@@ -8,7 +8,7 @@ import Footer from './Footer';
 
 const HomePage: React.FC = () => {
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen">
       <Navbar />
       <Hero />
       <FeaturedBooks />

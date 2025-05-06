@@ -1,27 +1,23 @@
 import Navbar from '../components/NavBar';
 import Footer from '../components/Footer';
 
-const posts = [
-  { id: 1, title: 'Blog Post 1', snippet: 'Thoughts on writing my latest novel and the inspiration behind it.' },
-  { id: 2, title: 'Blog Post 2', snippet: 'Tips for aspiring authors to overcome writer’s block.' },
-  { id: 3, title: 'Blog Post 3', snippet: 'A behind-the-scenes look_ma at my book tour.' },
-];
-
 const Blog: React.FC = () => {
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-[#FDF6E3]">
       <Navbar />
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">My Blog</h2>
-          <div className="space-y-8">
-            {posts.map((post) => (
-              <div key={post.id} className="bg-white shadow-md rounded-lg p-6">
-                <h3 className="text-xl font-semibold text-gray-900">{post.title}</h3>
-                <p className="text-gray-600 mt-2">{post.snippet}</p>
+          <h2 className="text-4xl font-bold text-teal-900 mb-8 text-center">Blog</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[1, 2, 3].map((post) => (
+              <div key={post} className="bg-white rounded-xl shadow-lg p-6">
+                <h3 className="text-2xl font-semibold text-teal-900">Blog Post {post}</h3>
+                <p className="text-gray-600 mt-2">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                </p>
                 <a
                   href="#"
-                  className="mt-4 inline-block text-blue-500 hover:text-blue-700 font-medium"
+                  className="mt-4 inline-block text-amber-600 hover:text-amber-700 font-medium"
                 >
                   Read More
                 </a>

@@ -6,6 +6,7 @@ import Books from './pages/book';
 import Blog from './pages/blog';
 import About from './components/About';
 import Contact from './components/Contact';
+import NinetiesLook from './pages/ninetieslook';
 import './index.css';
 
 const root = createRoot(document.getElementById('root')!);
@@ -18,6 +19,7 @@ root.render(
         <Route path="/blog" element={<Blog />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/nineties-look" element={<NinetiesLook />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>
