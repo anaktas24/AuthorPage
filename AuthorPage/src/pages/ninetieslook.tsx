@@ -1,179 +1,111 @@
-import { useState, useEffect } from 'react';
-import NinetiesNavbar from '../components/NinetiesNavbar';
-import Footer from '../components/Footer';
+import React, { useState, useEffect } from 'react';
+import './index.css';
+
+interface GuestbookEntry {
+  id: number;
+  name: string;
+  message: string;
+}
+
+interface VisitorCount {
+  count: number;
+}
 
 const NinetiesLook: React.FC = () => {
-  const [guestbookEntry, setGuestbookEntry] = useState({ name: '', message: '' });
-  const [isMidiPlaying, setIsMidiPlaying] = useState(false);
-  const [showModal, setShowModal] = useState(false);
+  const [entries, setEntries] = useState<GuestbookEntry[]>([]);
+  const [count, setCount] = useState<number>(0);
+  const [name, setName] = useState('');
+  const [message, setMessage] = useState('');
+  const [error, setError] = useState('');
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setGuestbookEntry({ ...guestbookEntry, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log('Guestbook entry:', guestbookEntry);
-    setGuestbookEntry({ name: '', message: '' });
-  };
-
-  const toggleMidi = () => {
-    setIsMidiPlaying(!isMidiPlaying);
-  };
-
-  // Cursor trail effect
   useEffect(() => {
-    const trail = (e: MouseEvent) => {
-      const trailElement = document.createElement('img');
-      trailElement.src = 'https://media.giphy.com/media/26ufnwz3wDUli7GU0/giphy.gif';
-      trailElement.className = 'cursor-trail';
-      trailElement.style.left = `${e.pageX - 8}px`;
-      trailElement.style.top = `${e.pageY - 8}px`;
-      document.body.appendChild(trailElement);
-      setTimeout(() => trailElement.remove(), 500);
-    };
-    document.addEventListener('mousemove', trail);
-    return () => document.removeEventListener('mousemove', trail);
+    fetch('http://localhost:3000/api/guestbook')
+      .then(res => res.json())
+      .then(data => setEntries(data))
+      .catch(err => setError(err.message));
+
+    fetch('http://localhost:3000/api/visitor_count')
+      .then(res => res.json())
+      .then(data => setCount(data.count))
+      .catch(err => setError(err.message));
   }, []);
 
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+      const res = await fetch('http://localhost:3000/api/guestbook', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ guestbook_entry: { name, message } })
+      });
+      if (res.ok) {
+        const newEntry = await res.json();
+        setEntries([newEntry, ...entries]);
+        setName('');
+        setMessage('');
+      } else {
+        setError('Failed to submit entry');
+      }
+    } catch (err) {
+      setError('Error submitting entry');
+    }
+  };
+
+  const incrementCount = async () => {
+    try {
+      const res = await fetch('http://localhost:3000/api/visitor_count/increment', {
+        method: 'POST'
+      });
+      if (res.ok) {
+        const data = await res.json();
+        setCount(data.count);
+      }
+    } catch (err) {
+      setError('Error incrementing count');
+    }
+  };
+
   return (
-    <div className="nineties-bg min-h-screen font-['VT323'] text-lg">
-      <NinetiesNavbar />
-      <div className="max-w-4xl mx-auto px-4 py-8 text-center">
-        {/* Loading Bar */}
-        <div className="loading-bar h-2 w-full mb-6"></div>
+    <div className="nineties-container">
+      <WordArt text="90's Vibe Guestbook" theme="rainbow" />
+      {error && <p className="error">{error}</p>}
 
-        <h1 className="text-4xl text-[#FFFF00] mb-4 animate-blink">Welcome to My Rad Book Site!</h1>
-        <marquee className="nineties-marquee mb-6">
-          *** Coming Soon: An Epic Fantasy Adventure! ***
-        </marquee>
-        <img
-          src="https://media.giphy.com/media/3o7btPCcdNniyf0ArS/giphy.gif"
-          alt="Under Construction"
-          className="mx-auto mb-6 w-32"
-        />
-
-        {/* Book Teaser with Modal */}
-        <div
-          className="teaser-card bg-[#FF00FF] border-4 border-[#00FFFF] p-6 mb-6 rounded-none shadow-[8px_8px_0_#00FF00] cursor-pointer"
-          onClick={() => setShowModal(true)}
-        >
-          <h2 className="text-3xl text-[#FFFF00] mb-4 flex items-center">
-            About My Book
-            <img
-              src="https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif"
-              alt="New"
-              className="w-8 h-8 ml-2"
-            />
-          </h2>
-          <p className="text-[#00FF00]">
-            Yo, check it! My upcoming book is a totally tubular fantasy trip! Picture portals to a world with dragons, magic, and a village lit by lanterns. Follow Jet, Aria, and Kiyo as they battle gnarly forces. It’s gonna be the bomb!
-          </p>
-          <a
-            href="#"
-            className="nineties-button mt-4 inline-block"
-            onClick={(e) => e.stopPropagation()}
-          >
-            Stay Tuned!
-          </a>
-        </div>
-
-        {/* Modal */}
-        {showModal && (
-          <div className="fixed inset-0 bg-[#000080] bg-opacity-80 flex items-center justify-center z-50">
-            <div className="bg-[#FF00FF] border-4 border-[#00FFFF] p-6 max-w-lg rounded-none">
-              <h3 className="text-2xl text-[#FFFF00] mb-4">Enter the Portal!</h3>
-              <p className="text-[#00FF00] mb-4">
-                A world of dragons and glowing lanterns awaits! Jet, Aria, and Kiyo uncover secrets in a village guarded by a massive dragon statue. Click below to close this rad preview!
-              </p>
-              <button
-                className="nineties-button"
-                onClick={() => setShowModal(false)}
-              >
-                Close
-              </button>
-            </div>
-          </div>
-        )}
-
-        {/* Guestbook */}
-        <div className="bg-[#0000FF] border-4 border-[#FFFF00] p-6 mb-6 rounded-none shadow-[8px_8px_0_#FF00FF]">
-          <h2 className="text-3xl text-[#FFFF00] mb-4">Sign My Guestbook!</h2>
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div>
-              <label className="block text-[#00FF00] mb-1">Your Name:</label>
-              <input
-                type="text"
-                name="name"
-                value={guestbookEntry.name}
-                onChange={handleChange}
-                className="w-full bg-[#FFFFFF] text-[#000000] border-2 border-[#FF00FF] px-2 py-1 font-['VT323'] text-lg"
-                required
-              />
-            </div>
-            <div>
-              <label className="block text-[#00FF00] mb-1">Your Message:</label>
-              <textarea
-                name="message"
-                value={guestbookEntry.message}
-                onChange={handleChange}
-                className="w-full bg-[#FFFFFF] text-[#000000] border-2 border-[#FF00FF] px-2 py-1 font-['VT323'] text-lg"
-                rows={4}
-                required
-              ></textarea>
-            </div>
-            <button
-              type="submit"
-              className="nineties-button"
-            >
-              Submit!
-            </button>
-          </form>
-        </div>
-
-        {/* MIDI Toggle */}
-        <div className="mb-6">
-          <button
-            className="nineties-button mb-4"
-            onClick={toggleMidi}
-          >
-            {isMidiPlaying ? 'Stop MIDI Jams!' : 'Play MIDI Jams!'}
-          </button>
-          {isMidiPlaying && (
-            <div className="loading-bar h-4 w-64 mx-auto animate-pulse"></div>
-          )}
-        </div>
-
-        {/* Hit Counter */}
-        <div className="mb-6">
-          <img
-            src="https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif"
-            alt="Hit Counter"
-            className="mx-auto w-24"
+      <div className="guestbook-form">
+        <h2>Sign the Guestbook</h2>
+        <form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            value={name}
+            onChange={e => setName(e.target.value)}
+            placeholder="Your Name"
+            required
+            className="pixel-input"
           />
-          <p className="text-[#00FF00]">Visitors since 1995!</p>
-        </div>
-
-        {/* Extra Clipart */}
-        <div className="flex justify-center gap-4">
-          <img
-            src="https://media.giphy.com/media/3o7btPCcdNniyf0ArS/giphy.gif"
-            alt="Clipart"
-            className="w-16"
+          <textarea
+            value={message}
+            onChange={e => setMessage(e.target.value)}
+            placeholder="Your Message"
+            required
+            className="pixel-input"
           />
-          <img
-            src="https://media.giphy.com/media/26ufnwz3wDUli7GU0/giphy.gif"
-            alt="Clipart"
-            className="w-16"
-          />
-          <img
-            src="https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif"
-            alt="Clipart"
-            className="w-16"
-          />
-        </div>
+          <button type="submit" className="pixel-button">Submit</button>
+        </form>
       </div>
-      <Footer isNineties={true} />
+
+      <div className="guestbook-entries">
+        <h2>Entries</h2>
+        {entries.map(entry => (
+          <div key={entry.id} className="entry">
+            <strong>{entry.name}</strong>: {entry.message}
+          </div>
+        ))}
+      </div>
+
+      <div className="visitor-count">
+        <h2>Visitors</h2>
+        <WordArt text={`Count: ${count}`} theme="neon" />
+        <button onClick={incrementCount} className="pixel-button">Increment</button>
+      </div>
     </div>
   );
 };

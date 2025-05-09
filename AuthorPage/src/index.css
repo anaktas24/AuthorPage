@@ -1,125 +1,125 @@
-@import 'tailwindcss';
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lora&family=VT323&display=swap');
-
 body {
-  @apply font-[Lora] bg-[#FDF6E3] text-gray-800;
+  margin: 0;
+  font-family: 'Courier New', monospace;
+  background-color: #000;
+  color: #0ff;
+  background-image: url('https://www.transparenttextures.com/patterns/stardust.png');
 }
 
-h1, h2, h3, h4 {
-  @apply font-['Playfair_Display'] tracking-tight;
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.8);
+  border: 2px solid #f0f;
+  box-shadow: 0 0 10px #0ff;
 }
 
-/* Parallax hero background */
-.hero-bg {
-  background: linear-gradient(rgba(0, 40, 60, 0.7), rgba(0, 40, 60, 0.7)), url('https://images.unsplash.com/photo-1506318164473-2dfd3ede3623?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
+.nineties-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background: linear-gradient(45deg, #f0f, #0ff);
+  border: 4px double #ff0;
+  box-shadow: 0 0 20px #f0f;
+  animation: pulse 2s infinite;
 }
 
-/* Tilt effect for cards */
-.tilt-card {
-  transition: transform 0.3s ease;
+@keyframes pulse {
+  0% { box-shadow: 0 0 20px #f0f; }
+  50% { box-shadow: 0 0 30px #0ff; }
+  100% { box-shadow: 0 0 20px #f0f; }
 }
 
-.tilt-card:hover {
-  transform: perspective(1000px) rotateX(2deg) rotateY(2deg);
+.pixel-input {
+  background: #000;
+  color: #0ff;
+  border: 2px solid #ff0;
+  font-family: 'Courier New', monospace;
+  padding: 5px;
+  margin: 5px 0;
+  width: 100%;
+  box-sizing: border-box;
 }
 
-/* Parchment texture for sections */
-.parchment-bg {
-  background: url('https://www.transparenttextures.com/patterns/paper.png'), #FDF6E3;
-}
-
-/* 90s-specific styles */
-.nineties-bg {
-  background: url('https://media.giphy.com/media/26uf2YTg7uQeSxhVS/giphy.gif');
-  background-size: cover;
-  color: #00FF00;
-  font-family: 'VT323', monospace;
-}
-
-.nineties-button {
-  background: #FF00FF;
-  color: #FFFF00;
-  border: 3px double #00FFFF;
-  padding: 8px 16px;
+.pixel-button {
+  background: #f0f;
+  color: #000;
+  border: 2px solid #ff0;
+  font-family: 'Courier New', monospace;
+  padding: 5px 10px;
+  cursor: pointer;
   text-transform: uppercase;
-  font-family: 'VT323', monospace;
-  font-size: 18px;
-  cursor: url('https://cur.cursors-4u.net/cursors/cur-9/cur817.cur'), auto;
 }
 
-.nineties-button:hover {
-  background: #00FFFF;
-  color: #FF00FF;
-  transform: scale(1.1);
+.pixel-button:hover {
+  background: #0ff;
+  color: #f0f;
 }
 
-.nineties-marquee {
-  color: #FFFF00;
-  font-size: 24px;
+.guestbook-form, .visitor-count, .guestbook-entries {
+  margin: 20px 0;
 }
 
-.nineties-navbar {
-  background: linear-gradient(to bottom, #800080, #0000FF);
-  border-bottom: 4px double #00FFFF;
+.entry {
+  background: rgba(255, 255, 0, 0.2);
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px dashed #0ff;
 }
 
-.nineties-nav-link {
-  color: #FFFF00;
-  text-shadow: 0 0 5px #00FF00;
+.error {
+  color: #f00;
+  font-weight: bold;
 }
 
-.nineties-nav-link:hover {
-  color: #00FFFF;
-  animation: blink 0.5s step-end infinite;
+.success {
+  color: #0f0;
+  font-weight: bold;
 }
 
-.nineties-footer {
-  background: linear-gradient(to top, #800080, #0000FF);
-  border-top: 4px double #00FFFF;
+.post-list {
+  list-style: none;
+  padding: 0;
 }
 
-.nineties-footer-link {
-  color: #FFFF00;
-  text-shadow: 0 0 5px #00FF00;
+.post-list li {
+  margin: 10px 0;
 }
 
-.nineties-footer-link:hover {
-  color: #00FFFF;
-  animation: blink 0.5s step-end infinite;
+.post-link {
+  color: #ff0;
+  text-decoration: none;
 }
 
-@keyframes blink {
-  50% {
-    opacity: 0;
-  }
+.post-link:hover {
+  color: #0ff;
+  text-decoration: underline;
 }
 
-.cursor-trail {
-  position: fixed;
-  width: 16px;
-  height: 16px;
-  pointer-events: none;
-  z-index: 9999;
+.contact-form {
+  display: flex;
+  flex-direction: column;
 }
 
-.teaser-card {
-  transition: transform 0.3s ease;
+.contact-form input, .contact-form textarea {
+  margin: 10px 0;
+  padding: 5px;
+  background: #000;
+  color: #0ff;
+  border: 2px solid #ff0;
+  font-family: 'Courier New', monospace;
 }
 
-.teaser-card:hover {
-  transform: perspective(1000px) rotateX(5deg) rotateY(5deg);
+.back-link {
+  display: inline-block;
+  margin: 10px 0;
+  color: #ff0;
+  text-decoration: none;
+  font-weight: bold;
 }
 
-.loading-bar {
-  background: linear-gradient(to right, #00FF00 50%, #0000FF 50%);
-  background-size: 200% 100%;
-  animation: load 2s linear infinite;
-}
-
-@keyframes load {
-  0% { background-position: 200% 0; }
-  100% { background-position: 0 0; }
+.back-link:hover {
+  color: #0ff;
+  text-decoration: underline;
 }

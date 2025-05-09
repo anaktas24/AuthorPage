@@ -23,18 +23,18 @@ const Navbar: React.FC = () => {
   };
 
   return (
-    <nav className="bg-teal-900 bg-opacity-80 backdrop-blur-md sticky top-0 z-50 shadow-lg">
+    <nav className="bg-[#FDF6E3] bg-opacity-90 backdrop-blur-md sticky top-0 z-50 parchment-bg">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           <div className="flex items-center">
-            <h1 className="text-2xl font-['Playfair_Display'] text-amber-200">Author Name</h1>
+            <h1 className="text-2xl font-['Playfair_Display'] text-teal-900">Author Name</h1>
           </div>
           <div className="flex items-center gap-4">
             {navItems.map((item) => (
               <Link
                 key={item.name}
                 to={item.path}
-                className="text-amber-100 hover:bg-teal-700 hover:text-amber-50 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200"
+                className="text-teal-900 hover:bg-amber-200 hover:text-teal-800 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200"
               >
                 {item.name}
               </Link>
@@ -45,7 +45,7 @@ const Navbar: React.FC = () => {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search..."
-                className="border border-teal-300 rounded-md px-3 py-1 bg-teal-800 text-amber-100 placeholder-amber-200 focus:outline-none focus:ring-2 focus:ring-amber-400"
+                className="border-none bg-amber-100 text-teal-900 placeholder-teal-600 rounded-md px-3 py-1 focus:outline-none focus:ring-2 focus:ring-amber-400"
               />
               <button
                 type="submit"
