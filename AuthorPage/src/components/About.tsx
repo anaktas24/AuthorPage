@@ -1,25 +1,28 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './index.css';
+import '../index.css';
 
-const AboutMe: React.FC = () => {
+const About: React.FC = () => {
   return (
-    <div className="container">
-      <h1>About Me</h1>
-      <p>
-        I'm a passionate Greek fantasy novelist, weaving tales of mythical worlds and epic adventures.
-        My debut novel, <em>Through the Starlit Portal</em>, follows Jet, Aria, and Kiyo as they uncover
-        secrets in a magical realm. Inspired by Greek mythology and 90s pop culture, I aim to transport
-        readers to vibrant, unforgettable universes.
-      </p>
-      <p>
-        When I'm not writing, you can find me exploring ancient ruins, sipping coffee in Athens cafés,
-        or binge-watching classic 90s TV shows. Connect with me via the contact page or follow my blog
-        for writing updates!
-      </p>
-      <Link to="/" className="back-link">Back to Home</Link>
+    <div className="bg-teal-50 py-16 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-3xl mx-auto">
+        <h1 className="text-4xl font-bold text-teal-900 mb-6">About Me</h1>
+        <p className="text-gray-700 text-lg leading-relaxed">
+          I'm a passionate Greek fantasy novelist, weaving tales of mythical worlds and epic adventures...
+        </p>
+        <p className="text-gray-700 text-lg leading-relaxed mt-6">
+          When I'm not writing, you can find me exploring ancient ruins, sipping coffee in Athens cafés...
+        </p>
+        <Link
+          to="/"
+          className="inline-block mt-8 text-amber-600 hover:text-amber-800 font-semibold transition-colors duration-300"
+        >
+          ← Back to Home
+        </Link>
+      </div>
     </div>
+
   );
 };
 
-export default AboutMe;
+export default About;

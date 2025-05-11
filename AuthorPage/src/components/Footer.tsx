@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 const Footer: React.FC<{ isNineties?: boolean }> = ({ isNineties = false }) => {
   return (
-    <footer className={isNineties ? "nineties-footer text-lg font-['VT323'] py-8" : "parchment-bg text-teal-900 py-8 seamless-bg"}>
+    <footer className={isNineties ? "nineties-footer text-lg font-['VT323'] py-8" : "bg-teal-50 text-teal-900 py-8"}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <p className={isNineties ? "text-[#00FF00]" : "text-gray-600"}>© {new Date().getFullYear()} Author Name. All rights reserved.</p>
         <div className="mt-4 flex justify-center gap-4">

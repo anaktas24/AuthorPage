@@ -1,11 +1,9 @@
-import Navbar from '../components/NavBar';
-import Footer from '../components/Footer';
+
 
 
 const Blog: React.FC = () => {
   return (
     <div className="min-h-screen bg-[#FDF6E3]">
-      <Navbar />
       <section className="parchment-bg py-16 seamless-bg">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-4xl font-bold text-teal-900 mb-8 text-center">Blog</h2>
@@ -27,7 +25,6 @@ const Blog: React.FC = () => {
           </div>
         </div>
       </section>
-      <Footer />
     </div>
   );
 };

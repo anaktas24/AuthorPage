@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import Navbar from '../components/NavBar';
-import Footer from '../components/Footer';
+
 
 interface Book {
   id: number;
@@ -64,7 +63,6 @@ const BookDetail: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-[#FDF6E3] book-detail">
-      <Navbar />
       <section className="parchment-bg py-16 seamless-bg">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row gap-8 mb-16">
@@ -162,7 +160,6 @@ const BookDetail: React.FC = () => {
           </div>
         </div>
       </section>
-      <Footer />
     </div>
   );
 };

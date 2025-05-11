@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import '../ninetiescss.css'
 
 const navItems = [
   { name: 'Home', path: '/nineties-look', icon: 'https://media.giphy.com/media/3o7btPCcdNniyf0ArS/giphy.gif' },

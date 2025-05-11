@@ -1,125 +1,65 @@
+@import "tailwindcss";
+
 body {
   margin: 0;
-  font-family: 'Courier New', monospace;
-  background-color: #000;
-  color: #0ff;
-  background-image: url('https://www.transparenttextures.com/patterns/stardust.png');
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  background: linear-gradient(to bottom, #E0F2FE, #F3F4F6);
+  color: #1F2937;
 }
 
 .container {
-  max-width: 800px;
+  max-width: 1280px;
   margin: 0 auto;
-  padding: 20px;
-  background: rgba(0, 0, 0, 0.8);
-  border: 2px solid #f0f;
-  box-shadow: 0 0 10px #0ff;
+  padding: 1.5rem;
 }
 
-.nineties-container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
-  background: linear-gradient(45deg, #f0f, #0ff);
-  border: 4px double #ff0;
-  box-shadow: 0 0 20px #f0f;
-  animation: pulse 2s infinite;
+.gradient-bg {
+  background: linear-gradient(135deg, #38B2AC, #FBBF24);
 }
 
-@keyframes pulse {
-  0% { box-shadow: 0 0 20px #f0f; }
-  50% { box-shadow: 0 0 30px #0ff; }
-  100% { box-shadow: 0 0 20px #f0f; }
+.card-shadow {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.pixel-input {
-  background: #000;
-  color: #0ff;
-  border: 2px solid #ff0;
-  font-family: 'Courier New', monospace;
-  padding: 5px;
-  margin: 5px 0;
-  width: 100%;
-  box-sizing: border-box;
+.card-shadow:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
 }
 
-.pixel-button {
-  background: #f0f;
-  color: #000;
-  border: 2px solid #ff0;
-  font-family: 'Courier New', monospace;
-  padding: 5px 10px;
-  cursor: pointer;
-  text-transform: uppercase;
+.tilt-card {
+  transition: transform 0.3s ease;
+  display: block;
+  border-radius: 0.75rem;
+  overflow: hidden;
 }
 
-.pixel-button:hover {
-  background: #0ff;
-  color: #f0f;
-}
-
-.guestbook-form, .visitor-count, .guestbook-entries {
-  margin: 20px 0;
-}
-
-.entry {
-  background: rgba(255, 255, 0, 0.2);
-  padding: 10px;
-  margin: 10px 0;
-  border: 1px dashed #0ff;
-}
-
-.error {
-  color: #f00;
-  font-weight: bold;
-}
-
-.success {
-  color: #0f0;
-  font-weight: bold;
-}
-
-.post-list {
-  list-style: none;
-  padding: 0;
-}
-
-.post-list li {
-  margin: 10px 0;
-}
-
-.post-link {
-  color: #ff0;
-  text-decoration: none;
-}
-
-.post-link:hover {
-  color: #0ff;
-  text-decoration: underline;
-}
-
-.contact-form {
-  display: flex;
-  flex-direction: column;
-}
-
-.contact-form input, .contact-form textarea {
-  margin: 10px 0;
-  padding: 5px;
-  background: #000;
-  color: #0ff;
-  border: 2px solid #ff0;
-  font-family: 'Courier New', monospace;
+.tilt-card:hover {
+  transform: rotate(3deg) scale(1.1);
 }
 
 .back-link {
   display: inline-block;
-  margin: 10px 0;
-  color: #ff0;
+  margin-top: 1.5rem;
+  color: #FBBF24;
   text-decoration: none;
-  font-weight: bold;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  background: #1F2937;
 }
 
 .back-link:hover {
-  color: #0ff;
-  text-decoration: underline;
+  background: #FBBF24;
+  color: #1F2937;
+}
+
+.error {
+  color: #DC2626;
+  font-weight: bold;
+}
+
+.success {
+  color: #16A34A;
+  font-weight: bold;
 }

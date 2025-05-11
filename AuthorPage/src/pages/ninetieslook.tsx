@@ -1,5 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import './index.css';
+import NinetiesNavbar from '../components/NinetiesNavbar';
+import Hero from '../components/Hero';
+import FeaturedBooks from '../components/FeaturedBooks';
+import BlogPreview from '../components/BlogPreview';
+import About from '../components/About';
+import Contact from '../pages/contact';
+import Footer from '../components/Footer';
+import '../ninetiescss.css';
 
 interface GuestbookEntry {
   id: number;
@@ -19,15 +26,21 @@ const NinetiesLook: React.FC = () => {
   const [error, setError] = useState('');
 
   useEffect(() => {
-    fetch('http://localhost:3000/api/guestbook')
+    fetch('http://localhost:3000/api/guestbook', { cache: 'no-store' })
       .then(res => res.json())
       .then(data => setEntries(data))
       .catch(err => setError(err.message));
 
-    fetch('http://localhost:3000/api/visitor_count')
+    fetch('http://localhost:3000/api/visitor_count', { cache: 'no-store' })
       .then(res => res.json())
       .then(data => setCount(data.count))
       .catch(err => setError(err.message));
+
+    // Increment visitor count on page load
+    fetch('http://localhost:3000/api/visitor_count/increment', { method: 'POST' })
+      .then(res => res.json())
+      .then(data => setCount(data.count))
+      .catch(err => setError('Error incrementing count'));
   }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -51,28 +64,28 @@ const NinetiesLook: React.FC = () => {
     }
   };
 
-  const incrementCount = async () => {
-    try {
-      const res = await fetch('http://localhost:3000/api/visitor_count/increment', {
-        method: 'POST'
-      });
-      if (res.ok) {
-        const data = await res.json();
-        setCount(data.count);
-      }
-    } catch (err) {
-      setError('Error incrementing count');
-    }
-  };
-
   return (
-    <div className="nineties-container">
-      <WordArt text="90's Vibe Guestbook" theme="rainbow" />
-      {error && <p className="error">{error}</p>}
-
-      <div className="guestbook-form">
-        <h2>Sign the Guestbook</h2>
-        <form onSubmit={handleSubmit}>
+    <div className="min-h-screen nineties-container">
+      <NinetiesNavbar />
+      <section className="nineties-section">
+        <Hero />
+      </section>
+      <section className="nineties-section">
+        <FeaturedBooks />
+      </section>
+      <section className="nineties-section">
+        <BlogPreview />
+      </section>
+      <section className="nineties-section">
+        <About />
+      </section>
+      <section className="nineties-section">
+        <Contact />
+      </section>
+      <section className="nineties-section">
+        <h2 style={{ color: '#ff0' }}>Sign the Guestbook</h2>
+        {error && <p className="error">{error}</p>}
+        <form onSubmit={handleSubmit} className="guestbook-form">
           <input
             type="text"
             value={name}
@@ -90,22 +103,20 @@ const NinetiesLook: React.FC = () => {
           />
           <button type="submit" className="pixel-button">Submit</button>
         </form>
-      </div>
-
-      <div className="guestbook-entries">
-        <h2>Entries</h2>
+      </section>
+      <section className="nineties-section">
+        <h2 style={{ color: '#ff0' }}>Entries</h2>
         {entries.map(entry => (
           <div key={entry.id} className="entry">
             <strong>{entry.name}</strong>: {entry.message}
           </div>
         ))}
-      </div>
-
-      <div className="visitor-count">
-        <h2>Visitors</h2>
-        <WordArt text={`Count: ${count}`} theme="neon" />
-        <button onClick={incrementCount} className="pixel-button">Increment</button>
-      </div>
+      </section>
+      <section className="nineties-section">
+        <h2 style={{ color: '#ff0' }}>Visitors</h2>
+        <p>Count: {count}</p>
+      </section>
+      <Footer isNineties={true} />
     </div>
   );
 };
