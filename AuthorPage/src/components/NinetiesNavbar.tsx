@@ -1,15 +1,15 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import '../ninetiescss.css'
-
 const navItems = [
-  { name: 'Home', path: '/nineties-look', icon: 'https://media.giphy.com/media/3o7btPCcdNniyf0ArS/giphy.gif' },
-  { name: 'Books', path: '/books', icon: 'https://media.giphy.com/media/26ufnwz3wDUli7GU0/giphy.gif' },
-  { name: 'Blog', path: '/blog', icon: 'https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif' },
-  { name: 'About Me', path: '/about', icon: 'https://media.giphy.com/media/3o7btPCcdNniyf0ArS/giphy.gif' },
-  { name: 'Contact', path: '/contact', icon: 'https://media.giphy.com/media/26ufnwz3wDUli7GU0/giphy.gif' },
-  { name: 'Back to the Future', path: '/', icon: 'https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif' },
+  {name: 'Home', path: '/nineties-look', icon: 'https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExcjNkbWEweG5uNTAzZGptemhpczZ6NzR0bDh5aXo1b2x0M2Y1Zzh0MCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/cNy9tdF66YtgI/giphy.gif'},
+  { name: 'Books', path: '/books', icon: 'https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExeTcyend3c3dvMDE2eW1hejN5aXU3ZnhhZWE4cTNoaXlxNXl5ajFtdSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/xT8qBt3pdiCZrk3erS/giphy.gif'},
+  {name: 'Blog', path: '/blog',icon: 'https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExanl0ZGt6a2U3dXFuam05aWl4bzBvdnptc280Mm1uMnMycXFsZ2F1YyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/dwmNhd5H7YAz6/giphy.gif' },
+  {name: 'About Me',path: '/about',icon: 'https://media.giphy.com/media/xT0xeJpnrWC4XWblEk/giphy.gif' },
+  {name: 'Contact', path: '/contact', icon: 'https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExbDZhc3BydjFxZmkyaXVpeXd1OWNoNmw0eGFqdnR5MzhmOWV6MjN4MCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3oEjI8FFuTWtkK6zJu/giphy.gif'},
+  {name: 'Back to the Future',path: '/',icon: 'https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExMmYydWhucnFhejRqOTl0NW1lMWJsNnY0bG55eTYwcG93dXkwN2NlciZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/KlTJqkQGyasiACT0Bj/giphy.gif'  },
 ];
+
 
 const NinetiesNavbar: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState<string>('');

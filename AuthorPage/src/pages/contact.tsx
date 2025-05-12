@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-const Contact: React.FC = () => {
+
+const Contact: React.FC<{ isNineties?: boolean }> = ({ isNineties = false }) => {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [success, setSuccess] = useState('');
   const [error, setError] = useState('');
@@ -33,9 +34,9 @@ const Contact: React.FC = () => {
   return (
     <div className="min-h-screen bg-[#FDF6E3]">
 
-      <section className="bg-teal-50 py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-4xl font-bold text-teal-900 mb-8 text-center">Contact Me</h2>
+        <section className={isNineties ? 'nineties-section' : 'bg-teal-50 py-16'}>
+          <div className={isNineties ? 'max-w-4xl mx-auto px-4' : "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"}>
+          <h2 className={isNineties ? 'text-3xl font-pixel text-yellow-300 mb-4' : "text-4xl font-bold text-teal-900 mb-8 text-center"}>Contact Me</h2>
           {success && <p className="text-green-600 text-center">{success}</p>}
           {error && <p className="text-red-600 text-center">{error}</p>}
           <div className="max-w-lg mx-auto">
@@ -106,7 +107,7 @@ const Contact: React.FC = () => {
             <div className="mt-8 text-center">
               <Link
                 to="/"
-                className="bg-amber-400 text-teal-900 px-6 py-3 rounded-full font-semibold hover:bg-amber-500 transition-transform duration-200 hover:scale-105"
+                className="bg-red-400 text-teal-900 px-6 py-3 rounded-full font-semibold hover:bg-amber-500 transition-transform duration-200 hover:scale-105"
               >
                 Back to Home
               </Link>

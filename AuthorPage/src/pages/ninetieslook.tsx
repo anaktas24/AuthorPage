@@ -3,7 +3,7 @@ import NinetiesNavbar from '../components/NinetiesNavbar';
 import Hero from '../components/Hero';
 import FeaturedBooks from '../components/FeaturedBooks';
 import BlogPreview from '../components/BlogPreview';
-import About from '../components/About';
+import About from '../components/About'; // Note: Rename AboutMe to About for consistency
 import Contact from '../pages/contact';
 import Footer from '../components/Footer';
 import '../ninetiescss.css';
@@ -36,7 +36,6 @@ const NinetiesLook: React.FC = () => {
       .then(data => setCount(data.count))
       .catch(err => setError(err.message));
 
-    // Increment visitor count on page load
     fetch('http://localhost:3000/api/visitor_count/increment', { method: 'POST' })
       .then(res => res.json())
       .then(data => setCount(data.count))
@@ -68,20 +67,18 @@ const NinetiesLook: React.FC = () => {
     <div className="min-h-screen nineties-container">
       <NinetiesNavbar />
       <section className="nineties-section">
-        <Hero />
+        <Hero isNineties={true} />
       </section>
       <section className="nineties-section">
-        <FeaturedBooks />
+        <FeaturedBooks isNineties={true} />
       </section>
       <section className="nineties-section">
-        <BlogPreview />
+        <BlogPreview isNineties={true} />
       </section>
       <section className="nineties-section">
-        <About />
+        <About isNineties={true} />
       </section>
-      <section className="nineties-section">
-        <Contact />
-      </section>
+     
       <section className="nineties-section">
         <h2 style={{ color: '#ff0' }}>Sign the Guestbook</h2>
         {error && <p className="error">{error}</p>}
@@ -115,8 +112,11 @@ const NinetiesLook: React.FC = () => {
       <section className="nineties-section">
         <h2 style={{ color: '#ff0' }}>Visitors</h2>
         <p>Count: {count}</p>
+      </section> 
+      <section className="nineties-section">
+        <Contact isNineties={true} />
       </section>
-      <Footer isNineties={true} />
+      
     </div>
   );
 };
