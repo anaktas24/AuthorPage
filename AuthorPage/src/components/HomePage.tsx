@@ -2,7 +2,7 @@ import Hero from './Hero';
 import FeaturedBooks from './FeaturedBooks';
 import BlogPreview from './BlogPreview';
 import About from './About';
-import Contact from '../pages/contact';
+import Contact from './Contact';
 
 const HomePage: React.FC = () => {
   return (

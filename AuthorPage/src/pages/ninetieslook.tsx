@@ -4,7 +4,7 @@ import Hero from '../components/Hero';
 import FeaturedBooks from '../components/FeaturedBooks';
 import BlogPreview from '../components/BlogPreview';
 import About from '../components/About'; // Note: Rename AboutMe to About for consistency
-import Contact from '../pages/contact';
+import Contact from '../components/Contact';
 import Footer from '../components/Footer';
 import '../ninetiescss.css';
 
@@ -78,7 +78,7 @@ const NinetiesLook: React.FC = () => {
       <section className="nineties-section">
         <About isNineties={true} />
       </section>
-     
+
       <section className="nineties-section">
         <h2 style={{ color: '#ff0' }}>Sign the Guestbook</h2>
         {error && <p className="error">{error}</p>}
@@ -112,11 +112,11 @@ const NinetiesLook: React.FC = () => {
       <section className="nineties-section">
         <h2 style={{ color: '#ff0' }}>Visitors</h2>
         <p>Count: {count}</p>
-      </section> 
+      </section>
       <section className="nineties-section">
         <Contact isNineties={true} />
       </section>
-      
+
     </div>
   );
 };

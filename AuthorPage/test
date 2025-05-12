@@ -1,0 +1,703 @@
+import Image from "next/image"
+import Link from "next/link"
+import { BlinkingText } from "@/components/blinking-text"
+import { HitCounter } from "@/components/hit-counter"
+import { Marquee } from "@/components/marquee"
+
+export default function Home() {
+  return (
+    <div className="space-bg min-h-screen font-['Comic_Sans_MS',_sans-serif] text-center overflow-x-hidden">
+      {/* Top Banner */}
+      <div className="bg-gradient-to-r from-blue-900 to-purple-900 p-2 border-b-2 border-yellow-400 flex justify-between items-center">
+        <Image src="/placeholder.svg?height=40&width=40" width={40} height={40} alt="Email" className="ml-4" />
+        <div className="bg-orange-500 px-4 py-1 rounded-md border-2 border-yellow-300 animate-pulse">
+          <span className="text-yellow-300 font-bold text-lg">NEW BOOK RELEASE! "COSMIC TALES" OUT NOW!</span>
+        </div>
+        <Image src="/placeholder.svg?height=40&width=40" width={40} height={40} alt="Email" className="mr-4" />
+      </div>
+
+      {/* Author Banner */}
+      <div className="relative mx-auto my-4 max-w-4xl border-4 border-gray-500 bg-gradient-to-r from-gray-700 to-gray-900">
+        <Image
+          src="/placeholder.svg?height=200&width=800"
+          width={800}
+          height={200}
+          alt="Author Banner"
+          className="w-full h-auto"
+        />
+
+        {/* Book Series Links */}
+        <div className="absolute bottom-4 left-0 w-full flex justify-around">
+          <Link href="#" className="bg-blue-900 px-3 py-1 text-blue-300 hover:bg-blue-700 hover:text-blue-100">
+            Sci-Fi
+          </Link>
+          <Link href="#" className="bg-blue-900 px-3 py-1 text-blue-300 hover:bg-blue-700 hover:text-blue-100">
+            Fantasy
+          </Link>
+          <Link href="#" className="bg-blue-900 px-3 py-1 text-blue-300 hover:bg-blue-700 hover:text-blue-100">
+            Mystery
+          </Link>
+          <Link href="#" className="bg-blue-900 px-3 py-1 text-blue-300 hover:bg-blue-700 hover:text-blue-100">
+            Horror
+          </Link>
+        </div>
+      </div>
+
+      {/* Main Title */}
+      <div className="mx-auto my-4 max-w-4xl border-4 border-gray-500 bg-gradient-to-r from-blue-900 to-purple-900 p-4">
+        <div className="text-center">
+          <p className="text-yellow-300 font-bold">WELCOME TO THE WORLD OF</p>
+          <h1 className="rainbow-text text-6xl font-bold my-2">J.R. STARWRITER</h1>
+          <p className="text-cyan-300">Bestselling Author of Science Fiction & Fantasy</p>
+        </div>
+      </div>
+
+      {/* Decorative Elements */}
+      <div className="relative">
+        <div className="absolute left-4 top-[-50px] animate-float">
+          <Image
+            src="/placeholder.svg?height=80&width=120"
+            width={120}
+            height={80}
+            alt="Spaceship Left"
+            className="transform -scale-x-100"
+          />
+        </div>
+        <div className="absolute right-4 top-[-30px] animate-float-delay">
+          <Image src="/placeholder.svg?height=80&width=120" width={120} height={80} alt="Spaceship Right" />
+        </div>
+      </div>
+
+      {/* Navigation Buttons */}
+      <div className="flex flex-wrap justify-center gap-4 my-8 relative z-10">
+        <div className="flex items-center">
+          <Image
+            src="/placeholder.svg?height=60&width=40"
+            width={40}
+            height={60}
+            alt="Book Icon"
+            className="animate-float"
+          />
+          <Link href="#" className="nav-button">
+            HOME
+          </Link>
+        </div>
+        <Link href="#featured" className="nav-button">
+          FEATURED BOOKS
+        </Link>
+        <Link href="#blog" className="nav-button">
+          BLOG
+        </Link>
+        <Link href="#about" className="nav-button">
+          ABOUT ME
+        </Link>
+        <Link href="#contact" className="nav-button">
+          CONTACT
+        </Link>
+        <Link href="#guestbook" className="nav-button">
+          GUESTBOOK
+        </Link>
+        <div className="flex items-center">
+          <Link href="#" className="nav-button">
+            BOOK TOUR
+          </Link>
+          <Image
+            src="/placeholder.svg?height=60&width=40"
+            width={40}
+            height={60}
+            alt="Book Icon"
+            className="animate-float"
+          />
+        </div>
+      </div>
+
+      {/* Hit Counter */}
+      <HitCounter count={12345} />
+
+      {/* Featured Books Section */}
+      <section
+        id="featured"
+        className="mx-auto my-8 max-w-4xl border-4 border-cyan-500 bg-gradient-to-r from-blue-900/70 to-purple-900/70 p-6 shadow-neon"
+      >
+        <div className="flex items-center justify-center gap-2 mb-4">
+          <Image
+            src="/placeholder.svg?height=40&width=40"
+            width={40}
+            height={40}
+            alt="Star"
+            className="animate-spin-slow"
+          />
+          <h2 className="text-3xl font-bold text-yellow-300 underline decoration-wavy decoration-pink-500 underline-offset-4">
+            FEATURED BOOKS
+          </h2>
+          <Image
+            src="/placeholder.svg?height=40&width=40"
+            width={40}
+            height={40}
+            alt="Star"
+            className="animate-spin-slow"
+          />
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
+          <div className="book-card">
+            <div className="relative">
+              <Image
+                src="/placeholder.svg?height=300&width=200"
+                width={200}
+                height={300}
+                alt="Book Cover"
+                className="mx-auto border-4 border-yellow-400 hover:border-pink-500 transition-all"
+              />
+              <div className="absolute top-0 right-0 bg-red-600 text-yellow-300 font-bold px-2 py-1 rotate-12 border-2 border-yellow-300">
+                NEW!
+              </div>
+            </div>
+            <h3 className="text-xl font-bold text-cyan-300 mt-2">Cosmic Tales: The Beginning</h3>
+            <p className="text-green-300">Science Fiction - 2023</p>
+            <BlinkingText text="BESTSELLER!" className="text-pink-500 font-bold mt-1" />
+          </div>
+
+          <div className="book-card">
+            <Image
+              src="/placeholder.svg?height=300&width=200"
+              width={200}
+              height={300}
+              alt="Book Cover"
+              className="mx-auto border-4 border-yellow-400 hover:border-pink-500 transition-all"
+            />
+            <h3 className="text-xl font-bold text-cyan-300 mt-2">The Crystal Kingdom</h3>
+            <p className="text-green-300">Fantasy - 2022</p>
+          </div>
+
+          <div className="book-card">
+            <Image
+              src="/placeholder.svg?height=300&width=200"
+              width={200}
+              height={300}
+              alt="Book Cover"
+              className="mx-auto border-4 border-yellow-400 hover:border-pink-500 transition-all"
+            />
+            <h3 className="text-xl font-bold text-cyan-300 mt-2">Shadows of Neptune</h3>
+            <p className="text-green-300">Sci-Fi Mystery - 2021</p>
+          </div>
+        </div>
+
+        <div className="text-center mt-6">
+          <Link
+            href="#"
+            className="inline-block bg-gradient-to-r from-purple-600 to-pink-600 px-6 py-3 rounded text-white font-bold hover:from-purple-500 hover:to-pink-500 border-2 border-yellow-300"
+          >
+            VIEW ALL BOOKS
+          </Link>
+        </div>
+      </section>
+
+      {/* Blog Section */}
+      <section
+        id="blog"
+        className="mx-auto my-8 max-w-4xl border-4 border-pink-500 bg-gradient-to-r from-purple-900/70 to-blue-900/70 p-6 shadow-neon"
+      >
+        <div className="flex items-center justify-center gap-2 mb-4">
+          <Image
+            src="/placeholder.svg?height=40&width=40"
+            width={40}
+            height={40}
+            alt="Star"
+            className="animate-spin-slow"
+          />
+          <h2 className="text-3xl font-bold text-pink-300 underline decoration-wavy decoration-cyan-500 underline-offset-4">
+            LATEST BLOG POSTS
+          </h2>
+          <Image
+            src="/placeholder.svg?height=40&width=40"
+            width={40}
+            height={40}
+            alt="Star"
+            className="animate-spin-slow"
+          />
+        </div>
+
+        <Marquee text="★★★ CHECK OUT MY WRITING JOURNEY AND BEHIND-THE-SCENES STORIES! UPDATED WEEKLY! ★★★" />
+
+        <div className="space-y-6 mt-6">
+          <div className="blog-post p-4 bg-gradient-to-r from-gray-900/70 to-blue-900/70 border-2 border-cyan-400 rounded-lg">
+            <div className="flex justify-between mb-2">
+              <h3 className="text-xl font-bold text-yellow-300">My Writing Process Revealed</h3>
+              <span className="text-green-300">03/08/2023</span>
+            </div>
+            <div className="flex gap-4">
+              <Image
+                src="/placeholder.svg?height=100&width=100"
+                width={100}
+                height={100}
+                alt="Blog Image"
+                className="border-2 border-pink-400"
+              />
+              <div className="text-left">
+                <p className="text-white">
+                  Many readers ask about my writing process. Here's a behind-the-scenes look at how I create the worlds
+                  and characters in my books...
+                </p>
+                <Link href="#" className="text-cyan-300 hover:text-yellow-300 underline mt-2 inline-block">
+                  Read More {">"}
+                  {">"}
+                </Link>
+              </div>
+            </div>
+          </div>
+
+          <div className="blog-post p-4 bg-gradient-to-r from-gray-900/70 to-blue-900/70 border-2 border-cyan-400 rounded-lg">
+            <div className="flex justify-between mb-2">
+              <h3 className="text-xl font-bold text-yellow-300">Inspiration Behind Cosmic Tales</h3>
+              <span className="text-green-300">02/15/2023</span>
+            </div>
+            <div className="flex gap-4">
+              <Image
+                src="/placeholder.svg?height=100&width=100"
+                width={100}
+                height={100}
+                alt="Blog Image"
+                className="border-2 border-pink-400"
+              />
+              <div className="text-left">
+                <p className="text-white">
+                  The idea for my latest series came from a combination of childhood dreams and a fascinating
+                  documentary about space exploration...
+                </p>
+                <Link href="#" className="text-cyan-300 hover:text-yellow-300 underline mt-2 inline-block">
+                  Read More {">"}
+                  {">"}
+                </Link>
+              </div>
+            </div>
+          </div>
+
+          <div className="blog-post p-4 bg-gradient-to-r from-gray-900/70 to-blue-900/70 border-2 border-cyan-400 rounded-lg">
+            <div className="flex justify-between mb-2">
+              <h3 className="text-xl font-bold text-yellow-300">Character Development Tips</h3>
+              <span className="text-green-300">01/22/2023</span>
+            </div>
+            <div className="flex gap-4">
+              <Image
+                src="/placeholder.svg?height=100&width=100"
+                width={100}
+                height={100}
+                alt="Blog Image"
+                className="border-2 border-pink-400"
+              />
+              <div className="text-left">
+                <p className="text-white">
+                  Creating memorable characters is essential for any story. Here are some techniques I use to develop
+                  complex, relatable characters...
+                </p>
+                <Link href="#" className="text-cyan-300 hover:text-yellow-300 underline mt-2 inline-block">
+                  Read More {">"}
+                  {">"}
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="text-center mt-6">
+          <Link
+            href="#"
+            className="inline-block bg-gradient-to-r from-blue-600 to-cyan-600 px-6 py-3 rounded text-white font-bold hover:from-blue-500 hover:to-cyan-500 border-2 border-yellow-300"
+          >
+            VIEW ALL POSTS
+          </Link>
+        </div>
+      </section>
+
+      {/* About Me Section */}
+      <section
+        id="about"
+        className="mx-auto my-8 max-w-4xl border-4 border-yellow-500 bg-gradient-to-r from-blue-900/70 to-purple-900/70 p-6 shadow-neon"
+      >
+        <div className="flex items-center justify-center gap-2 mb-4">
+          <Image
+            src="/placeholder.svg?height=40&width=40"
+            width={40}
+            height={40}
+            alt="Star"
+            className="animate-spin-slow"
+          />
+          <h2 className="text-3xl font-bold text-yellow-300 underline decoration-wavy decoration-pink-500 underline-offset-4">
+            ABOUT ME
+          </h2>
+          <Image
+            src="/placeholder.svg?height=40&width=40"
+            width={40}
+            height={40}
+            alt="Star"
+            className="animate-spin-slow"
+          />
+        </div>
+
+        <div className="flex flex-col md:flex-row gap-6 mt-6">
+          <div className="md:w-1/3">
+            <div className="relative">
+              <Image
+                src="/placeholder.svg?height=300&width=250"
+                width={250}
+                height={300}
+                alt="Author Photo"
+                className="mx-auto border-4 border-cyan-500 rounded-lg"
+              />
+              <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-transparent to-blue-900/50"></div>
+            </div>
+            <div className="text-center mt-4">
+              <BlinkingText text="J.R. STARWRITER" className="text-cyan-300 font-bold text-xl" />
+              <p className="text-pink-300">Bestselling Author</p>
+            </div>
+          </div>
+          <div className="md:w-2/3 text-left">
+            <p className="text-white mb-4">
+              Greetings, fellow adventurers! I'm J.R. Starwriter, author of over 20 science fiction and fantasy novels.
+              My journey as a writer began when I was just 10 years old, crafting stories about distant planets and
+              magical realms.
+            </p>
+            <p className="text-white mb-4">
+              When I'm not writing, you can find me stargazing, hiking through forests seeking inspiration, or playing
+              tabletop RPGs with friends. My cats, Nebula and Orion, often keep me company during late-night writing
+              sessions.
+            </p>
+            <div className="p-4 bg-gradient-to-r from-gray-900/70 to-blue-900/70 border-2 border-pink-400 rounded-lg">
+              <h3 className="text-xl font-bold text-yellow-300 mb-2">AWARDS & ACHIEVEMENTS:</h3>
+              <ul className="list-disc list-inside text-green-300">
+                <li>Galaxy Award for Best New Writer (2018)</li>
+                <li>Nebula Nominee for "The Crystal Kingdom" (2022)</li>
+                <li>New York Times Bestseller List - 3 times</li>
+                <li>Over 2 million books sold worldwide</li>
+                <li>Translated into 15 languages</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section
+        id="contact"
+        className="mx-auto my-8 max-w-4xl border-4 border-green-500 bg-gradient-to-r from-purple-900/70 to-blue-900/70 p-6 shadow-neon"
+      >
+        <div className="flex items-center justify-center gap-2 mb-4">
+          <Image
+            src="/placeholder.svg?height=40&width=40"
+            width={40}
+            height={40}
+            alt="Star"
+            className="animate-spin-slow"
+          />
+          <h2 className="text-3xl font-bold text-green-300 underline decoration-wavy decoration-yellow-500 underline-offset-4">
+            CONTACT ME
+          </h2>
+          <Image
+            src="/placeholder.svg?height=40&width=40"
+            width={40}
+            height={40}
+            alt="Star"
+            className="animate-spin-slow"
+          />
+        </div>
+
+        <div className="flex flex-col md:flex-row gap-6 mt-6">
+          <div className="md:w-1/2">
+            <div className="p-4 bg-gradient-to-r from-gray-900/70 to-blue-900/70 border-2 border-cyan-400 rounded-lg">
+              <h3 className="text-xl font-bold text-yellow-300 mb-4">SEND ME A MESSAGE:</h3>
+              <form className="space-y-4">
+                <div>
+                  <label htmlFor="name" className="block text-cyan-300 font-bold mb-1">
+                    Your Name:
+                  </label>
+                  <input
+                    type="text"
+                    id="name"
+                    className="w-full bg-black border-2 border-pink-500 text-green-400 p-2 rounded focus:border-yellow-400 focus:outline-none"
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="email" className="block text-cyan-300 font-bold mb-1">
+                    Your Email:
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    className="w-full bg-black border-2 border-pink-500 text-green-400 p-2 rounded focus:border-yellow-400 focus:outline-none"
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="message" className="block text-cyan-300 font-bold mb-1">
+                    Your Message:
+                  </label>
+                  <textarea
+                    id="message"
+                    rows={4}
+                    className="w-full bg-black border-2 border-pink-500 text-green-400 p-2 rounded focus:border-yellow-400 focus:outline-none"
+                  ></textarea>
+                </div>
+
+                <div className="text-center">
+                  <button
+                    type="submit"
+                    className="bg-gradient-to-r from-purple-600 to-pink-600 px-6 py-3 rounded text-white font-bold hover:from-purple-500 hover:to-pink-500 border-2 border-yellow-300"
+                  >
+                    SEND MESSAGE
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div className="md:w-1/2">
+            <div className="p-4 bg-gradient-to-r from-gray-900/70 to-blue-900/70 border-2 border-cyan-400 rounded-lg h-full">
+              <h3 className="text-xl font-bold text-yellow-300 mb-4">OTHER WAYS TO REACH ME:</h3>
+
+              <div className="space-y-4">
+                <div className="flex items-center gap-3">
+                  <div className="bg-blue-600 p-2 rounded-full">
+                    <Image src="/placeholder.svg?height=30&width=30" width={30} height={30} alt="Email" />
+                  </div>
+                  <div className="text-left">
+                    <p className="text-pink-300 font-bold">Email:</p>
+                    <p className="text-green-300">jrstarwriter@cosmos.com</p>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-3">
+                  <div className="bg-red-600 p-2 rounded-full">
+                    <Image src="/placeholder.svg?height=30&width=30" width={30} height={30} alt="Literary Agent" />
+                  </div>
+                  <div className="text-left">
+                    <p className="text-pink-300 font-bold">Literary Agent:</p>
+                    <p className="text-green-300">Sarah Johnson, Stellar Literary Agency</p>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-3">
+                  <div className="bg-yellow-600 p-2 rounded-full">
+                    <Image src="/placeholder.svg?height=30&width=30" width={30} height={30} alt="Publisher" />
+                  </div>
+                  <div className="text-left">
+                    <p className="text-pink-300 font-bold">Publisher:</p>
+                    <p className="text-green-300">Cosmic Press, New York</p>
+                  </div>
+                </div>
+
+                <div className="mt-6 text-center">
+                  <BlinkingText text="FAN MAIL ADDRESS!" className="text-red-500 font-bold" />
+                  <div className="mt-2 bg-blue-900/50 border-2 border-blue-500 rounded-lg p-2">
+                    <p className="text-yellow-300 font-bold">Send physical mail to:</p>
+                    <p className="text-white font-mono">P.O. Box 12345, Starville, CA 90210</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Guestbook Section */}
+      <section
+        id="guestbook"
+        className="mx-auto my-8 max-w-4xl border-4 border-pink-500 bg-gradient-to-r from-blue-900/70 to-purple-900/70 p-6 shadow-neon"
+      >
+        <div className="flex items-center justify-center gap-2 mb-4">
+          <Image
+            src="/placeholder.svg?height=40&width=40"
+            width={40}
+            height={40}
+            alt="Star"
+            className="animate-spin-slow"
+          />
+          <h2 className="text-3xl font-bold text-pink-300 underline decoration-wavy decoration-cyan-500 underline-offset-4">
+            SIGN MY GUESTBOOK
+          </h2>
+          <Image
+            src="/placeholder.svg?height=40&width=40"
+            width={40}
+            height={40}
+            alt="Star"
+            className="animate-spin-slow"
+          />
+        </div>
+
+        <div className="mb-6 p-4 bg-gradient-to-r from-gray-900/70 to-blue-900/70 border-2 border-cyan-400 rounded-lg">
+          <form className="space-y-4">
+            <div>
+              <label htmlFor="guestname" className="block text-cyan-300 font-bold mb-1">
+                Your Name:
+              </label>
+              <input
+                type="text"
+                id="guestname"
+                className="w-full bg-black border-2 border-pink-500 text-green-400 p-2 rounded focus:border-yellow-400 focus:outline-none"
+              />
+            </div>
+
+            <div>
+              <label htmlFor="guestemail" className="block text-cyan-300 font-bold mb-1">
+                Your Email:
+              </label>
+              <input
+                type="email"
+                id="guestemail"
+                className="w-full bg-black border-2 border-pink-500 text-green-400 p-2 rounded focus:border-yellow-400 focus:outline-none"
+              />
+            </div>
+
+            <div>
+              <label htmlFor="guesthomepage" className="block text-cyan-300 font-bold mb-1">
+                Your Homepage:
+              </label>
+              <input
+                type="url"
+                id="guesthomepage"
+                placeholder="http://"
+                className="w-full bg-black border-2 border-pink-500 text-green-400 p-2 rounded focus:border-yellow-400 focus:outline-none"
+              />
+            </div>
+
+            <div>
+              <label htmlFor="guestmessage" className="block text-cyan-300 font-bold mb-1">
+                Your Message:
+              </label>
+              <textarea
+                id="guestmessage"
+                rows={4}
+                className="w-full bg-black border-2 border-pink-500 text-green-400 p-2 rounded focus:border-yellow-400 focus:outline-none"
+              ></textarea>
+            </div>
+
+            <div className="text-center">
+              <button
+                type="submit"
+                className="bg-gradient-to-r from-purple-600 to-pink-600 px-6 py-3 rounded text-white font-bold hover:from-purple-500 hover:to-pink-500 border-2 border-yellow-300"
+              >
+                SUBMIT!
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <h3 className="text-2xl font-bold text-yellow-300 mb-4">PREVIOUS ENTRIES:</h3>
+
+        <div className="space-y-4">
+          <div className="p-4 bg-gradient-to-r from-gray-900/70 to-blue-900/70 border-2 border-yellow-400 rounded-lg">
+            <div className="flex justify-between mb-2">
+              <div className="font-bold text-pink-300">SciFi_Fan_2000</div>
+              <div className="text-green-300">03/15/2023</div>
+            </div>
+            <p className="mb-2">
+              I just finished "Cosmic Tales" and it blew my mind! The twist at the end of chapter 12 had me gasping.
+              Can't wait for the sequel!
+            </p>
+            <div className="text-sm text-cyan-300">
+              <Link href="#" className="hover:text-yellow-300 underline">
+                http://geocities.com/scifi_fan_2000
+              </Link>
+            </div>
+          </div>
+
+          <div className="p-4 bg-gradient-to-r from-gray-900/70 to-blue-900/70 border-2 border-yellow-400 rounded-lg">
+            <div className="flex justify-between mb-2">
+              <div className="font-bold text-pink-300">BookWorm42</div>
+              <div className="text-green-300">03/02/2023</div>
+            </div>
+            <p className="mb-2">
+              Your books got me through a tough time last year. The Crystal Kingdom series is my comfort read. Thank you
+              for creating such amazing worlds!
+            </p>
+            <div className="text-sm text-cyan-300">
+              <Link href="#" className="hover:text-yellow-300 underline">
+                http://angelfire.com/bookworm42
+              </Link>
+            </div>
+          </div>
+
+          <div className="p-4 bg-gradient-to-r from-gray-900/70 to-blue-900/70 border-2 border-yellow-400 rounded-lg">
+            <div className="flex justify-between mb-2">
+              <div className="font-bold text-pink-300">AspiringWriter</div>
+              <div className="text-green-300">02/24/2023</div>
+            </div>
+            <p className="mb-2">
+              Your writing workshop last month was so helpful! I've implemented your character development techniques
+              and my story is so much better now. Thank you!
+            </p>
+            <div className="text-sm text-cyan-300">
+              <Link href="#" className="hover:text-yellow-300 underline">
+                http://tripod.com/aspiringwriter
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Book Promo Section */}
+      <section className="mx-auto my-8 max-w-4xl text-center">
+        <div className="bg-gradient-to-r from-blue-900/70 to-purple-900/70 border-4 border-cyan-500 p-4 rounded-lg shadow-neon mb-6">
+          <h2 className="text-2xl font-bold text-yellow-300 mb-4">PRE-ORDER MY NEXT BOOK!</h2>
+          <div className="flex justify-center gap-4">
+            <div className="bg-blue-300 rounded-full p-2 border-2 border-blue-500">
+              <span className="text-blue-900 font-bold">SAVE 20%</span>
+            </div>
+            <Link
+              href="#"
+              className="text-3xl font-bold text-blue-300 hover:text-yellow-300 underline decoration-wavy decoration-pink-500 underline-offset-4"
+            >
+              ORDER NOW
+            </Link>
+            <div className="bg-blue-300 rounded-full p-2 border-2 border-blue-500">
+              <span className="text-blue-900 font-bold">SAVE 20%</span>
+            </div>
+          </div>
+        </div>
+
+        <div className="flex justify-center items-center gap-4">
+          <Image
+            src="/placeholder.svg?height=80&width=80"
+            width={80}
+            height={80}
+            alt="Star"
+            className="animate-pulse"
+          />
+          <div className="bg-gradient-to-r from-gray-700 to-gray-900 border-4 border-gray-500 p-4 rounded-lg">
+            <Link href="#" className="block">
+              <div className="relative">
+                <Image src="/placeholder.svg?height=100&width=100" width={100} height={100} alt="Book Trailer" />
+                <span className="text-red-500 font-bold block mt-2">watch book trailer</span>
+              </div>
+            </Link>
+          </div>
+          <Image
+            src="/placeholder.svg?height=80&width=80"
+            width={80}
+            height={80}
+            alt="Star"
+            className="animate-pulse"
+          />
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-gradient-to-r from-blue-900/70 to-purple-900/70 p-6 border-t-2 border-cyan-400 mt-8 text-center">
+        <div className="mb-4">
+          <p className="text-yellow-300">© 1995-2023 J.R. Starwriter's Official Website. All Rights Reserved.</p>
+          <p className="text-green-300 text-sm mt-2">Best viewed with Netscape Navigator 3.0 at 800x600 resolution</p>
+        </div>
+
+        <div className="flex justify-center gap-4 mb-4">
+          <Image src="/placeholder.svg?height=40&width=40" width={40} height={40} alt="Netscape Now" />
+          <Image src="/placeholder.svg?height=40&width=40" width={40} height={40} alt="Author Logo" />
+          <Image src="/placeholder.svg?height=40&width=40" width={40} height={40} alt="Made with Notepad" />
+        </div>
+
+        <div className="text-sm text-cyan-300">
+          <p className="text-green-300 font-mono">03:03:1995</p>
+        </div>
+      </footer>
+    </div>
+  )
+}

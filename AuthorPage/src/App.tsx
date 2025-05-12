@@ -6,7 +6,7 @@ import BookDetail from './pages/bookdetail';
 import Posts from './pages/posts';
 import PostDetail from './pages/postdetail';
 import PostNew from './pages/postnew';
-import Contact from './pages/contact';
+import Contact from './components/Contact';
 import About from './components/About';
 import Layout from './components/Layout';
 
