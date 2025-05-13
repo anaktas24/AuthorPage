@@ -1,14 +1,14 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import HomePage from './components/HomePage';
-import NinetiesLook from './pages/ninetieslook';
-import Books from './pages/book';
-import BookDetail from './pages/bookdetail';
-import Posts from './pages/posts';
-import PostDetail from './pages/postdetail';
-import PostNew from './pages/postnew';
-import Contact from './components/Contact';
-import About from './components/About';
-import Layout from './components/Layout';
+import HomePage from './pages/homepage/homepage';
+import NinetiesLook from './pages/ninetieslook/ninetieslook';
+import Books from './pages/book/book';
+import BookDetail from './pages/book/bookdetail';
+import Posts from './pages/blog/posts';
+import PostDetail from './pages/blog/postdetail';
+import PostNew from './pages/blog/postnew';
+import Contact from './pages/contact/contact';
+import About from './pages/about/about';
+import Layout from './assets/style/Layout';
 
 function App() {
   return (

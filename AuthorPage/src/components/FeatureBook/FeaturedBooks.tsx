@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 const FeaturedBooks: React.FC<{ isNineties?: boolean }> = ({ isNineties = false }) => {
   return (
-    <section className={isNineties ? 'nineties-section' : 'bg-teal-50 py-16 seamless-bg'}>
+    <section className={isNineties ? 'nineties-section' : 'bg-white py-16 seamless-bg'}>
       <div className={isNineties ? 'max-w-4xl mx-auto px-4' : 'max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'}>
         <h3 className={isNineties ? 'text-3xl font-pixel text-yellow-300 mb-6 text-center' : 'text-4xl font-bold text-teal-900 mb-8 text-center'}>Featured Stories</h3>
         <div className={isNineties ? 'grid grid-cols-1 gap-6' : 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8'}>

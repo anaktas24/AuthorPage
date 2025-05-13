@@ -1,8 +1,9 @@
-import Hero from './Hero';
-import FeaturedBooks from './FeaturedBooks';
-import BlogPreview from './BlogPreview';
-import About from './About';
-import Contact from './Contact';
+
+import Hero from '../../components/Hero/Hero';
+import FeaturedBooks from '../../components/FeatureBook/FeaturedBooks';
+import BlogPreview from '../../components/BlogPreview/BlogPreview';
+import About from '../about/about';
+import Contact from '../contact/contact';
 
 const HomePage: React.FC = () => {
   return (
