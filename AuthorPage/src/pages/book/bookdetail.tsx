@@ -87,7 +87,7 @@ const BookDetail: React.FC = () => {
                 to="/books"
                 className="bg-amber-400 text-teal-900 px-6 py-3 rounded-full font-semibold hover:bg-amber-500 transition-transform duration-200 hover:scale-105"
               >
-                Back to Books
+                Back to Books yall
               </Link>
             </div>
           </div>

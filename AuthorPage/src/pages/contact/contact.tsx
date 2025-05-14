@@ -32,8 +32,6 @@ const Contact: React.FC<{ isNineties?: boolean }> = ({ isNineties = false }) => 
   };
 
   return (
-    <div className="min-h-screen bg-[#FDF6E3]">
-
         <section className={isNineties ? 'nineties-section' : 'bg-white py-16'}>
           <div className={isNineties ? 'max-w-4xl mx-auto px-4' : "max-w-7xl mx-auto px-10 sm:px-6 lg:px-8 py-20"}>
           <h2 className={isNineties ? 'text-3xl font-pixel text-yellow-300 mb-4' : "text-4xl font-bold text-teal-900 mb-8 text-center"}>Contact Me</h2>
@@ -115,8 +113,7 @@ const Contact: React.FC<{ isNineties?: boolean }> = ({ isNineties = false }) => 
           </div>
         </div>
       </section>
- 
-    </div>
+
   );
 };
 

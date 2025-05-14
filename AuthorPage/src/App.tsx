@@ -9,6 +9,10 @@ import PostNew from './pages/blog/postnew';
 import Contact from './pages/contact/contact';
 import About from './pages/about/about';
 import Layout from './assets/style/Layout';
+import AddBookForm from './pages/book/admin/addbookform';
+import EditBookForm from './pages/book/admin/editbookform';
+import AdminPanel from './components/AdminPanel/AdminPanel';
+import BookIntro from './pages/book/bookintro';
 
 function App() {
   return (
@@ -23,6 +27,11 @@ function App() {
           <Route path="/posts/new" element={<PostNew />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/about" element={<About />} />
+          <Route path="/admin/create" element={<AddBookForm />} />
+          <Route path="/admin/edit/:id" element={<EditBookForm />} />
+          <Route path="/admin" element={<AdminPanel />} />
+          <Route path="/book/:id/intro" element={<BookIntro />} />
+
         </Route>
         <Route path="/nineties-look" element={<NinetiesLook />} />
       </Routes>
