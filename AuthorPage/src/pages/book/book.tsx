@@ -28,7 +28,7 @@ const Books: React.FC = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {books.map((book) => (
               <Link
-                to={`/book/${book.id}`}
+                to={`/book/${book.id}/intro`}
                 key={book.id}
                 className="seamless-bg tilt-card"
               >

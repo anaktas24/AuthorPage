@@ -12,7 +12,7 @@ import Layout from './assets/style/Layout';
 import AddBookForm from './pages/book/admin/addbookform';
 import EditBookForm from './pages/book/admin/editbookform';
 import AdminPanel from './components/AdminPanel/AdminPanel';
-import BookIntro from './pages/book/bookintro';
+import BookIntro from './pages/book/portals/bookintro'
 
 function App() {
   return (
