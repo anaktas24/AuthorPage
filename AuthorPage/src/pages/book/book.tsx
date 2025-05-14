@@ -21,7 +21,7 @@ const Books: React.FC = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#FDF6E3]">
+    <div className='min-h-screen bg-white py-40'>
       <section className="parchment-bg py-16 seamless-bg">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-4xl font-bold text-teal-900 mb-8 text-center">My Books</h2>

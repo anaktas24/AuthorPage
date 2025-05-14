@@ -34,13 +34,13 @@ const Contact: React.FC<{ isNineties?: boolean }> = ({ isNineties = false }) => 
   return (
     <div className="min-h-screen bg-[#FDF6E3]">
 
-        <section className={isNineties ? 'nineties-section' : 'bg-teal-50 py-16'}>
-          <div className={isNineties ? 'max-w-4xl mx-auto px-4' : "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"}>
+        <section className={isNineties ? 'nineties-section' : 'bg-white py-16'}>
+          <div className={isNineties ? 'max-w-4xl mx-auto px-4' : "max-w-7xl mx-auto px-10 sm:px-6 lg:px-8 py-20"}>
           <h2 className={isNineties ? 'text-3xl font-pixel text-yellow-300 mb-4' : "text-4xl font-bold text-teal-900 mb-8 text-center"}>Contact Me</h2>
           {success && <p className="text-green-600 text-center">{success}</p>}
           {error && <p className="text-red-600 text-center">{error}</p>}
           <div className="max-w-lg mx-auto">
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-10">
               <div>
                 <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
                   Name
@@ -85,7 +85,7 @@ const Contact: React.FC<{ isNineties?: boolean }> = ({ isNineties = false }) => 
               </div>
               <button
                 type="submit"
-                className="bg-amber-500 hover:bg-amber-600 text-white px-6 py-3 rounded-md font-semibold transition-all duration-300 shadow-lg"
+                className="bg-gray-600 hover:bg-amber-600 text-white px-6 py-3 rounded-md font-semibold transition-all duration-300 shadow-lg"
               >
                 Send Message
               </button>
@@ -107,7 +107,7 @@ const Contact: React.FC<{ isNineties?: boolean }> = ({ isNineties = false }) => 
             <div className="mt-8 text-center">
               <Link
                 to="/"
-                className="bg-red-400 text-teal-900 px-6 py-3 rounded-full font-semibold hover:bg-amber-500 transition-transform duration-200 hover:scale-105"
+                className="bg-gray-600 text-teal-900 px-6 py-3 rounded-full font-semibold hover:bg-grey-200 transition-transform duration-200 hover:scale-105"
               >
                 Back to Home
               </Link>

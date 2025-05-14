@@ -1,22 +1,11 @@
 import React, { useState, useEffect } from 'react';
-<<<<<<< HEAD:AuthorPage/src/pages/ninetieslook.tsx
-import NinetiesNavbar from '../components/NinetiesNavbar';
-import Hero from '../components/Hero';
-import FeaturedBooks from '../components/FeaturedBooks';
-import BlogPreview from '../components/BlogPreview';
-import About from '../components/About'; // Note: Rename AboutMe to About for consistency
-import Contact from '../components/Contact';
-import Footer from '../components/Footer';
-import '../ninetiescss.css';
-=======
 import NinetiesNavbar from '../../components/NinetiesNavBar/NinetiesNavbar';
 import Hero from '../../components/Hero/Hero';
-import FeaturedBooks from '../../components/FeatureBook/FeaturedBooks';
+import FeaturedBooks from '../../components/FeatureBooks/FeaturedBooks';
 import BlogPreview from '../../components/BlogPreview/BlogPreview';
 import About from '../about/about'; 
 import Contact from '../contact/contact';
 import './ninetieslook.css'
->>>>>>> d37fbe4 (Hero Section):AuthorPage/src/pages/ninetieslook/ninetieslook.tsx
 
 interface GuestbookEntry {
   id: number;
