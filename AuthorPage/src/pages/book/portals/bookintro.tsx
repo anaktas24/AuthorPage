@@ -1,4 +1,4 @@
-
+import PortalChoice from './portal'
 
 
 
@@ -14,6 +14,11 @@ const BookIntro: React.FC = () => {
 return (
   <div className="min-h-screen bg-white py-40">
 
-  </div>
-)}
+      <div className="h-[600px] w-full">
+        <PortalChoice />
+      </div>
+    </div>
+  );
+};
+
   export default BookIntro;
