@@ -1,6 +1,23 @@
+// BookDetail.tsx (optional simplified version)
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 
+interface Character {
+  name: string;
+  image: string;
+  bio: string;
+}
+
+interface Setting {
+  name: string;
+  description: string;
+}
+
+interface Worldbuilding {
+  magic: string;
+  history: string;
+  culture: string;
+}
 
 interface Book {
   id: number;
@@ -8,6 +25,9 @@ interface Book {
   description: string;
   cover_url: string;
   progress: number;
+  characters: Character[];
+  settings: Setting[];
+  worldbuilding: Worldbuilding;
 }
 
 const BookDetail: React.FC = () => {
@@ -21,145 +41,116 @@ const BookDetail: React.FC = () => {
       .catch((err) => console.error('Error fetching book:', err));
   }, [id]);
 
-  const characters = [
-    {
-      name: 'Jet',
-      image: 'https://via.placeholder.com/200',
-      bio: 'A quick-witted leader with a knack for solving puzzles. Jet’s mysterious green sparks hint at a deeper connection to the portals.',
-    },
-    {
-      name: 'Aria',
-      image: 'https://via.placeholder.com/200',
-      bio: 'A skilled mage who weaves light into spells. Aria’s calm demeanor hides a fierce determination to protect her friends.',
-    },
-    {
-      name: 'Kiyo',
-      image: 'https://via.placeholder.com/200',
-      bio: 'A stealthy scout with a love for adventure. Kiyo’s knowledge of the Starlit Plains is unmatched.',
-    },
-  ];
-
-  const settings = [
-    {
-      name: 'Lantern Village',
-      description:
-        'A quaint village illuminated by enchanted lanterns that never fade. Its cobbled streets hide ancient portal ruins.',
-    },
-    {
-      name: 'Starlit Plains',
-      description:
-        'Vast grasslands under a sky of endless stars. Portals shimmer in hidden groves, guarded by ancient spirits.',
-    },
-  ];
-
-  const worldbuilding = {
-    magic: 'Portals are powered by starlight, channeled through rare crystals. Only the gifted can activate them.',
-    history:
-      'The world was once united by portals, but a great schism sealed most gateways, leaving only myths.',
-    culture: 'Villagers celebrate the Starlit Festival, honoring the portals with dances and glowing offerings.',
-  };
-
-  if (!book) return <div>Loading...</div>;
+  if (!book) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-[#FDF6E3] text-teal-900">
+        Loading...
+      </div>
+    );
+  }
 
   return (
-    <div className="min-h-screen bg-[#FDF6E3] book-detail">
-      <section className="parchment-bg py-16 seamless-bg">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row gap-8 mb-16">
+    <div className="min-h-screen bg-[#FDF6E3] pt-40 pb-12 px-4 sm:px-6 lg:px-8">
+
+      <div className="max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-min">
+          <div className="lg:col-span-2 bg-white rounded-2xl shadow-lg p-6 flex flex-col sm:flex-row gap-6 transform hover:scale-[1.02] transition-transform duration-300">
             <img
               src={book.cover_url}
               alt={book.title}
-              className="w-full md:w-1/3"
+              className="w-full sm:w-1/3 rounded-lg object-cover"
             />
-            <div className="md:w-2/3">
-              <h2 className="text-4xl font-bold text-teal-900 mb-4">{book.title}</h2>
-              <p className="text-lg text-gray-600 mb-4">{book.description}</p>
+            <div className="flex-1">
+              <h2 className="text-3xl font-bold text-teal-900 mb-3">{book.title}</h2>
+              <p className="text-gray-600 mb-4">{book.description}</p>
               <div className="mb-4">
                 <span className="text-sm text-gray-600">Progress: {book.progress}%</span>
-                <div className="progress-bar">
+                <div className="w-full bg-gray-200 rounded-full h-2.5 mt-1">
                   <div
-                    className="progress-fill"
+                    className="bg-amber-400 h-2.5 rounded-full"
                     style={{ width: `${book.progress}%` }}
                   ></div>
                 </div>
               </div>
               <Link
                 to="/books"
-                className="bg-amber-400 text-teal-900 px-6 py-3 rounded-full font-semibold hover:bg-amber-500 transition-transform duration-200 hover:scale-105"
+                className="inline-block bg-amber-400 text-teal-900 px-5 py-2 rounded-full font-semibold hover:bg-amber-500 transition-colors duration-200"
               >
-                Back to Books yall
+                Back to Books
               </Link>
             </div>
           </div>
-          <div className="mb-16">
-            <h3 className="text-3xl font-bold text-teal-900 mb-6 text-center">World Map</h3>
+          <div className="bg-white rounded-2xl shadow-lg p-6 md:row-span-2 transform hover:scale-[1.02] transition-transform duration-300">
+            <h3 className="text-2xl font-bold text-teal-900 mb-4 text-center">World Map</h3>
             <div className="relative">
               <img
                 src="https://via.placeholder.com/800x400?text=World+Map"
                 alt="World Map"
-                className="w-full"
+                className="w-full rounded-lg"
               />
-              <div
-                className="map-hotspot absolute top-1/4 left-1/4 w-8 h-8 bg-amber-400 rounded-full cursor-pointer"
-                title="Lantern Village"
-              >
-                <span className="hidden hover:block bg-teal-900 text-amber-100 p-2 rounded text-sm">
-                  Lantern Village: A glowing haven of magic.
-                </span>
-              </div>
-              <div
-                className="map-hotspot absolute top-3/4 right-1/4 w-8 h-8 bg-amber-400 rounded-full cursor-pointer"
-                title="Starlit Plains"
-              >
-                <span className="hidden hover:block bg-teal-900 text-amber-100 p-2 rounded text-sm">
-                  Starlit Plains: Home to hidden portals.
-                </span>
-              </div>
-            </div>
-          </div>
-          <div className="mb-16">
-            <h3 className="text-3xl font-bold text-teal-900 mb-6 text-center">Characters</h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-              {characters.map((character) => (
+              {book.settings.map((setting, index) => (
                 <div
-                  key={character.name}
-                  className="character-card seamless-bg p-6"
+                  key={setting.name}
+                  className={`map-hotspot absolute w-6 h-6 bg-amber-400 rounded-full cursor-pointer ${
+                    index === 0 ? 'top-1/4 left-1/4' : 'top-3/4 right-1/4'
+                  }`}
+                  title={setting.name}
                 >
-                  <img
-                    src={character.image}
-                    alt={character.name}
-                    className="w-full h-48 object-cover mb-4"
-                  />
-                  <h4 className="text-2xl font-semibold text-teal-900">{character.name}</h4>
-                  <p className="text-gray-600">{character.bio}</p>
+                  <span className="absolute hidden hover:block bg-teal-900 text-amber-100 p-2 rounded text-sm -top-10 left-1/2 transform -translate-x-1/2 whitespace-nowrap">
+                    {setting.name}
+                  </span>
                 </div>
               ))}
             </div>
           </div>
-          <div className="mb-16">
-            <h3 className="text-3xl font-bold text-teal-900 mb-6 text-center">Settings</h3>
-            <div className="space-y-8">
-              {settings.map((setting) => (
-                <div key={setting.name} className="seamless-bg p-6">
-                  <h4 className="text-2xl font-semibold text-teal-900">{setting.name}</h4>
-                  <p className="text-gray-600">{setting.description}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-          <div>
-            <h3 className="text-3xl font-bold text-teal-900 mb-6 text-center">Worldbuilding</h3>
-            <div className="seamless-bg p-6">
-              <h4 className="text-2xl font-semibold text-teal-900 mb-2">Magic System</h4>
-              <p className="text-gray-600 mb-4">{worldbuilding.magic}</p>
-              <h4 className="text-2xl font-semibold text-teal-900 mb-2">History</h4>
-              <p className="text-gray-600 mb-4">{worldbuilding.history}</p>
-              <h4 className="text-2xl font-semibold text-teal-900 mb-2">Culture</h4>
-              <p className="text-gray-600">{worldbuilding.culture}</p>
-            </div>
+          <div className="bg-white rounded-2xl shadow-lg p-6 col-span-1 lg:col-span-2 transform hover:scale-[1.02] transition-transform duration-300">
+          <h3 className="text-2xl font-bold text-teal-900 mb-4 text-center">Characters</h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+            {book.characters.map((character) => (
+              <div key={character.name} className="bg-[#FDF6E3] rounded-lg p-3 shadow-sm">
+                <img
+                  src={character.image}
+                  alt={character.name}
+                  className="w-full h-40 object-cover rounded-md mb-2"
+                />
+                <h4 className="text-lg font-semibold text-teal-900">{character.name}</h4>
+                <p className="text-gray-600 text-sm">{character.bio}</p>
+              </div>
+            ))}
           </div>
         </div>
-      </section>
+
+          <div className="bg-white rounded-2xl shadow-lg p-6 transform hover:scale-[1.02] transition-transform duration-300">
+            <h3 className="text-2xl font-bold text-teal-900 mb-4 text-center">Settings</h3>
+            <div className="space-y-4">
+              {book.settings.map((setting) => (
+                <div key={setting.name}>
+                  <h4 className="text-lg font-semibold text-teal-900">{setting.name}</h4>
+                  <p className="text-gray-600 text-sm">{setting.description}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="lg:col-span-2 bg-white rounded-2xl shadow-lg p-6 transform hover:scale-[1.02] transition-transform duration-300">
+            <h3 className="text-2xl font-bold text-teal-900 mb-4 text-center">Worldbuilding</h3>
+            <div className="space-y-4">
+              <div>
+                <h4 className="text-lg font-semibold text-teal-900">Magic System</h4>
+                <p className="text-gray-600 text-sm">{book.worldbuilding.magic}</p>
+              </div>
+              <div>
+                <h4 className="text-lg font-semibold text-teal-900">History</h4>
+                <p className="text-gray-600 text-sm">{book.worldbuilding.history}</p>
+              </div>
+              <div>
+                <h4 className="text-lg font-semibold text-teal-900">Culture</h4>
+                <p className="text-gray-600 text-sm">{book.worldbuilding.culture}</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
     </div>
   );
 };

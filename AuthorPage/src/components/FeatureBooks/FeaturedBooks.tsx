@@ -38,7 +38,7 @@ const FeaturedBooks: React.FC<{ isNineties?: boolean }> = ({ isNineties = false 
         >
         {books.map((book) => (
           <Link
-              to={`/book/${book.id}/intro`}
+              to={`/book/${book.id}`}
               key={book.id}
               className="block rounded-2xl overflow-hidden transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl"
               aria-label={`Enter portal for ${book.title}`}
