@@ -1,70 +1,469 @@
 @import "tailwindcss";
 
-/* Global Styles */
+/*@plugin "tailwindcss-animate";*/
+/*@plugin "@tailwindcss/typography";*/
 
-html {
-  scroll-behavior: smooth;
+@custom-variant dark (&:is(.dark *));
+
+@font-face {
+    font-family: "PublicaSans";
+    src: local("PublicaSans-Ultralight"),
+    url(./assets/fonts/PublicaSans-Ultralight.woff) format("woff");
+    font-display: swap;
+    font-weight: 300;
+}
+
+@font-face {
+    font-family: "PublicaSans";
+    src: local("PublicaSans-Regular"),
+    url(./assets/fonts/PublicaSans-Regular.woff) format("woff");
+    font-display: swap;
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: "PublicaSans";
+    src: local("PublicaSans-PublicaSans-Bold"),
+    url(./assets/fonts/PublicaSans-Bold.woff) format("woff");
+    font-display: swap;
+    font-weight: 700;
 }
 
 body {
-  margin: 0;
-  padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  background: linear-gradient(to bottom, #ffffff 0%, #fcfcfc 100%);
-  color: #1F2937; /* Neutral dark text */
-  line-height: 1.5;
-  min-height: 100vh;
-  position: relative;
-  overflow-x: hidden;
+    @apply m-0 bg-gray-100 font-sans;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
-/* Optional: Subtle fantasy overlay (comment out if unwanted) */
-/*
-body::before {
-  content: '';
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+:root {
+    --background: oklch(1 0 0);
+    --foreground: oklch(0.141 0.005 285.823);
+    --card: oklch(1 0 0);
+    --card-foreground: oklch(0.141 0.005 285.823);
+    --popover: oklch(1 0 0);
+    --popover-foreground: oklch(0.141 0.005 285.823);
+    --primary: oklch(0.21 0.006 285.885);
+    --primary-foreground: oklch(0.985 0 0);
+    --secondary: oklch(0.967 0.001 286.375);
+    --secondary-foreground: oklch(0.21 0.006 285.885);
+    --muted: oklch(0.967 0.001 286.375);
+    --muted-foreground: oklch(0.552 0.016 285.938);
+    --accent: oklch(0.967 0.001 286.375);
+    --accent-foreground: oklch(0.21 0.006 285.885);
+    --destructive: oklch(0.577 0.245 27.325);
+    --destructive-foreground: oklch(0.577 0.245 27.325);
+    --border: oklch(0.92 0.004 286.32);
+    --input: oklch(0.92 0.004 286.32);
+    --ring: oklch(0.871 0.006 286.286);
+    --chart-1: oklch(0.646 0.222 41.116);
+    --chart-2: oklch(0.6 0.118 184.704);
+    --chart-3: oklch(0.398 0.07 227.392);
+    --chart-4: oklch(0.828 0.189 84.429);
+    --chart-5: oklch(0.769 0.188 70.08);
+    --radius: 0.625rem;
+    --sidebar: oklch(0.985 0 0);
+    --sidebar-foreground: oklch(0.141 0.005 285.823);
+    --sidebar-primary: oklch(0.21 0.006 285.885);
+    --sidebar-primary-foreground: oklch(0.985 0 0);
+    --sidebar-accent: oklch(0.967 0.001 286.375);
+    --sidebar-accent-foreground: oklch(0.21 0.006 285.885);
+    --sidebar-border: oklch(0.92 0.004 286.32);
+    --sidebar-ring: oklch(0.871 0.006 286.286);
+    --font-sans: 'PublicaSans', sans-serif;
+}
+
+.dark {
+    --background: oklch(0.141 0.005 285.823);
+    --foreground: oklch(0.985 0 0);
+    --card: oklch(0.141 0.005 285.823);
+    --card-foreground: oklch(0.985 0 0);
+    --popover: oklch(0.141 0.005 285.823);
+    --popover-foreground: oklch(0.985 0 0);
+    --primary: oklch(0.985 0 0);
+    --primary-foreground: oklch(0.21 0.006 285.885);
+    --secondary: oklch(0.274 0.006 286.033);
+    --secondary-foreground: oklch(0.985 0 0);
+    --muted: oklch(0.274 0.006 286.033);
+    --muted-foreground: oklch(0.705 0.015 286.067);
+    --accent: oklch(0.274 0.006 286.033);
+    --accent-foreground: oklch(0.985 0 0);
+    --destructive: oklch(0.396 0.141 25.723);
+    --destructive-foreground: oklch(0.637 0.237 25.331);
+    --border: oklch(0.274 0.006 286.033);
+    --input: oklch(0.274 0.006 286.033);
+    --ring: oklch(0.442 0.017 285.786);
+    --chart-1: oklch(0.488 0.243 264.376);
+    --chart-2: oklch(0.696 0.17 162.48);
+    --chart-3: oklch(0.769 0.188 70.08);
+    --chart-4: oklch(0.627 0.265 303.9);
+    --chart-5: oklch(0.645 0.246 16.439);
+    --sidebar: oklch(0.21 0.006 285.885);
+    --sidebar-foreground: oklch(0.985 0 0);
+    --sidebar-primary: oklch(0.488 0.243 264.376);
+    --sidebar-primary-foreground: oklch(0.985 0 0);
+    --sidebar-accent: oklch(0.274 0.006 286.033);
+    --sidebar-accent-foreground: oklch(0.985 0 0);
+    --sidebar-border: oklch(0.274 0.006 286.033);
+    --sidebar-ring: oklch(0.442 0.017 285.786);
+}
+
+@theme inline {
+    --color-background: var(--background);
+    --color-foreground: var(--foreground);
+    --color-card: var(--card);
+    --color-card-foreground: var(--card-foreground);
+    --color-popover: var(--popover);
+    --color-popover-foreground: var(--popover-foreground);
+    --color-primary: var(--primary);
+    --color-primary-foreground: var(--primary-foreground);
+    --color-secondary: var(--secondary);
+    --color-secondary-foreground: var(--secondary-foreground);
+    --color-muted: var(--muted);
+    --color-muted-foreground: var(--muted-foreground);
+    --color-accent: var(--accent);
+    --color-accent-foreground: var(--accent-foreground);
+    --color-destructive: var(--destructive);
+    --color-destructive-foreground: var(--destructive-foreground);
+    --color-border: var(--border);
+    --color-input: var(--input);
+    --color-ring: var(--ring);
+    --color-chart-1: var(--chart-1);
+    --color-chart-2: var(--chart-2);
+    --color-chart-3: var(--chart-3);
+    --color-chart-4: var(--chart-4);
+    --color-chart-5: var(--chart-5);
+    --radius-sm: calc(var(--radius) - 4px);
+    --radius-md: calc(var(--radius) - 2px);
+    --radius-lg: var(--radius);
+    --radius-xl: calc(var(--radius) + 4px);
+    --color-sidebar: var(--sidebar);
+    --color-sidebar-foreground: var(--sidebar-foreground);
+    --color-sidebar-primary: var(--sidebar-primary);
+    --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+    --color-sidebar-accent: var(--sidebar-accent);
+    --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+    --color-sidebar-border: var(--sidebar-border);
+    --color-sidebar-ring: var(--sidebar-ring);
+
+    --animate-fade-in: fadeIn 0.3s linear forwards;
+
+    @keyframes fadeIn {
+        0% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
+}
+
+@layer base {
+    * {
+        @apply border-border outline-ring/50;
+    }
+
+    body {
+        @apply bg-background text-foreground;
+    }
+}
+
+/* =====================================================================
+   90s THEME — route scoped (apply only inside .nineties wrapper)
+   ===================================================================== */
+
+/* Tailwind-like variant if needed */
+@custom-variant nineties (&:is(.nineties *));
+
+/* ---------------------------------------------------------
+   1. Theme tokens (colors, fonts, radius, cursor)
+   --------------------------------------------------------- */
+.nineties {
+  --background: #0f0225;           /* deep space violet */
+  --foreground: #eaffea;           /* mint text */
+  --card: #001133;                 /* panel navy */
+  --card-foreground: #eaffea;
+  --popover: #001133;
+  --popover-foreground: #eaffea;
+  --primary: #ff00ff;              /* magenta */
+  --primary-foreground: #000000;
+  --secondary: #00ffff;            /* cyan */
+  --secondary-foreground: #001133;
+  --accent: #ffff00;               /* yellow */
+  --accent-foreground: #001133;
+  --muted: #0e1a3a;
+  --muted-foreground: #9fd7ff;
+  --destructive: #ff4040;
+  --destructive-foreground: #000000;
+  --border: #c0c0c0;
+  --input: #c0c0c0;
+  --ring: #00ffff;
+  --chart-1: #ff00ff;
+  --chart-2: #00ffff;
+  --chart-3: #4050ff;
+  --chart-4: #ffff00;
+  --chart-5: #00ff66;
+  --radius: 0.375rem; /* slightly boxier corners */
+  --font-sans: 'Comic Sans MS','Courier New',system-ui,sans-serif;
+
+  /* Fun retro cursor */
+  cursor: url('data:image/gif;base64,R0lGODlhEAAQAMQAAJmZmZmZmdbW1tbW1n9/f4iIiP///7CwsL29vY2NjZqamqOjo7e3t7+/v9nZ2evr6+Pj4+Hh4dzc3MfHx76+vtra2sTExK+vr3d3d7u7u4CAgMHBwbq6ukpKSgAAACH5BAEAABcALAAAAAAQABAAAAVa4CeOZGmeaKqubOu+cCzPdFQKQhIWGQkUqB8Wg0Ww2SgB0tY2WwUBCwWQAAJr0KQnFqCgoMGBQDi8jQmUEAAOw=='), auto;
+}
+
+/* CRT scanline overlay */
+.nineties::after {
+  content: "";
   position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: url('/img/faint-scroll-bg.png') no-repeat center center;
-  background-size: cover;
-  opacity: 0.04;
+  inset: 0;
   pointer-events: none;
-  z-index: -1;
-}
-*/
-
-/* Links */
-a {
-  color: inherit;
-  text-decoration: none;
-  transition: color 0.3s ease;
+  background:
+    linear-gradient(rgba(255,255,255,.05), rgba(0,0,0,.05)),
+    repeating-linear-gradient(0deg, rgba(255,255,255,.05) 0 1px, transparent 1px 3px);
+  mix-blend-mode: overlay;
 }
 
-a:hover,
-a:focus {
-  color: #840d0d;
-  text-decoration: underline;
+/* ---------------------------------------------------------
+   2. Page container & sections
+   --------------------------------------------------------- */
+.nineties .nineties-container {
+  min-height: 100vh;
+  padding: 16px;
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  background:
+    radial-gradient(circle at 15% 10%, rgba(255,0,255,.18), transparent 40%),
+    radial-gradient(circle at 90% 0%, rgba(0,255,255,.12), transparent 40%),
+    linear-gradient(135deg, #0f0225 0%, #00172f 100%);
 }
 
-/* Basic container for layout */
-.container {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 1rem;
+.nineties .nineties-topbar {
+  border: 3px double var(--accent);
+  background: #000;
+  box-shadow: 0 0 12px var(--primary);
+  margin-bottom: 12px;
+}
+.nineties .marquee-text {
+  display: inline-block;
+  margin: 0 24px;
+  color: var(--secondary);
+  text-shadow: 0 0 8px var(--primary);
+  font-weight: 800;
+  letter-spacing: .5px;
 }
 
-/* Fluid section spacing */
-.flow-section {
-  padding-top: 6rem;
-  padding-bottom: 6rem;
+.nineties .nineties-section {
+  padding: 20px;
+  margin: 18px 0;
+  border: 4px ridge var(--border);
+  background:
+    linear-gradient(180deg, rgba(0,26,64,.9), rgba(0,17,41,.9)),
+    radial-gradient(circle at 0 0, rgba(255,0,255,.15), transparent 60%);
+  box-shadow:
+    0 0 18px rgba(0,255,255,.35),
+    inset 0 0 12px rgba(255,255,0,.25);
+  transition: all .2s ease;
+}
+.nineties .nineties-section:hover {
+  box-shadow:
+    0 0 24px rgba(255,0,255,.5),
+    inset 0 0 14px rgba(0,255,255,.35);
+  transform: translateY(-1px);
 }
 
-/* Focus styles for accessibility */
-:focus {
-  outline: 2px solid #FBBF24;
+/* Hero section with rainbow border */
+.nineties .nineties-hero {
+  border-image: repeating-linear-gradient(
+    90deg,
+    var(--primary), var(--primary) 10px,
+    var(--secondary) 10px, var(--secondary) 20px,
+    var(--accent) 20px, var(--accent) 30px
+  ) 8;
+  border-style: solid;
 }
 
-/* Responsive images */
-img {
-  max-width: 100%;
-  height: auto;
+/* ---------------------------------------------------------
+   3. Navbar
+   --------------------------------------------------------- */
+.nineties .nineties-navbar {
+  background: linear-gradient(180deg, #000022, #000033 60%, #000044);
+  border-bottom: 3px double var(--border);
 }
+.nineties .nineties-nav-link {
+  padding: 6px 10px;
+  border: 2px ridge var(--border);
+  background: linear-gradient(180deg, rgba(0,26,64,.9), rgba(0,17,41,.9));
+  color: var(--foreground);
+}
+.nineties .nineties-button {
+  padding: 6px 12px;
+  background: linear-gradient(45deg, var(--primary), var(--secondary));
+  border: 3px solid var(--accent);
+  text-transform: uppercase;
+}
+
+/* ---------------------------------------------------------
+   4. Featured & Blog sections
+   --------------------------------------------------------- */
+
+/* Headings */
+.nineties .nineties-featured :where(h2,h3),
+.nineties .nineties-blog :where(h2,h3) {
+  color: var(--accent) !important;
+  text-shadow: 0 0 8px var(--primary);
+}
+
+/* Cards / panels */
+.nineties .nineties-featured :where(.card,[class*="card"],.panel,[class*="panel"],article,li),
+.nineties .nineties-blog :where(article,.post,[class*="card"],.card) {
+  background-color: var(--card) !important;
+  color: var(--card-foreground) !important;
+  border: 4px ridge var(--border) !important;
+  box-shadow: 0 0 18px rgba(0,255,255,.35), inset 0 0 12px rgba(255,255,0,.25);
+}
+
+/* Override Tailwind bg colors */
+.nineties .nineties-featured :where(.bg-white,.bg-gray-50,.bg-gray-100,[class*="bg-white"]),
+.nineties .nineties-blog :where(.bg-white,.bg-gray-50,.bg-gray-100,[class*="bg-white"]) {
+  background-color: var(--card) !important;
+  color: var(--card-foreground) !important;
+}
+
+/* Borders & muted text */
+.nineties .nineties-featured :where(.border,[class*="border-gray"]),
+.nineties .nineties-blog :where(.border,[class*="border-gray"]) {
+  border-color: var(--border) !important;
+}
+.nineties .nineties-featured :where(.text-gray-700,.text-gray-600),
+.nineties .nineties-blog :where(.text-gray-700,.text-gray-600) {
+  color: var(--muted-foreground) !important;
+}
+
+/* Links & buttons */
+.nineties .nineties-featured :where(a,button,[role="button"]),
+.nineties .nineties-blog a {
+  background: linear-gradient(45deg, var(--primary), var(--secondary)) !important;
+  border: 3px solid var(--accent) !important;
+  text-transform: uppercase;
+  font-weight: 800;
+  color: var(--primary-foreground) !important;
+}
+.nineties .nineties-featured :where(a:hover,button:hover),
+.nineties .nineties-blog a:hover {
+  filter: brightness(1.05);
+}
+/* ---------------------------------------------------------
+   5. Guestbook & Visitors
+   --------------------------------------------------------- */
+
+/* Section headers */
+.nineties .section-header { 
+  display: flex; 
+  align-items: center; 
+  gap: 12px; 
+}
+.nineties .section-header .badge { 
+  image-rendering: pixelated; 
+}
+
+/* Labels */
+.nineties .label {
+  display: block;
+  margin: 10px 0;
+  color: var(--accent);
+  font-weight: bold;
+  text-shadow: 0 0 6px var(--primary);
+}
+
+/* Retro form fields */
+.nineties .pixel-input {
+  background: #000080;
+  border: 3px solid var(--accent);
+  color: #00ff88;
+  padding: 10px;
+  margin-top: 6px;
+  width: 100%;
+  font-family: 'Courier New', monospace;
+  font-size: 14px;
+  box-shadow: inset 0 0 8px rgba(0,0,0,.6);
+  transition: border-color .2s, background .2s, transform .1s;
+}
+.nineties .pixel-input:focus {
+  outline: none;
+  background: #0000aa;
+  border-color: var(--primary);
+  transform: translateY(-1px);
+}
+
+/* Buttons */
+.nineties .pixel-button {
+  background: linear-gradient(45deg, var(--primary), var(--secondary));
+  border: 3px solid var(--accent);
+  color: var(--primary-foreground);
+  padding: 10px 18px;
+  cursor: pointer;
+  font-family: 'Comic Sans MS', sans-serif;
+  font-weight: 900;
+  text-transform: uppercase;
+  text-shadow: 1px 1px #000;
+  box-shadow: 0 6px 0 #333, 0 0 12px var(--accent);
+  transition: transform .1s, box-shadow .2s, filter .2s;
+}
+.nineties .pixel-button:hover { filter: brightness(1.1); }
+.nineties .pixel-button:active { transform: translateY(2px); box-shadow: 0 2px 0 #333; }
+
+/* Guestbook wrapper */
+.nineties .guestbook-form {
+  border: 4px double var(--secondary);
+  padding: 18px;
+  background: rgba(255, 0, 255, 0.08);
+  box-shadow: 0 0 14px var(--primary);
+}
+
+/* Entries */
+.nineties .entry {
+  border: 2px dashed var(--accent);
+  padding: 12px;
+  margin: 12px 0;
+  background: rgba(0, 0, 255, 0.12);
+  color: #fff;
+  transition: background .2s, transform .15s;
+}
+.nineties .entry:hover { 
+  background: rgba(0, 0, 255, 0.22); 
+  transform: translateX(4px); 
+}
+.nineties .entry-head { 
+  display: flex; 
+  align-items: center; 
+  gap: 8px; 
+  color: var(--secondary); 
+  margin-bottom: 6px; 
+  font-weight: 700; 
+}
+.nineties .dot { 
+  width: 6px; 
+  height: 6px; 
+  background: var(--primary); 
+  border-radius: 50%; 
+  display: inline-block; 
+}
+
+/* Error banner */
+.nineties .error {
+  color: #ff4040;
+  font-weight: 900;
+  padding: 10px;
+  background: rgba(255, 0, 0, 0.18);
+  border: 3px solid #ff0000;
+  text-align: center;
+  animation: blink 1s step-end infinite;
+  margin-bottom: 10px;
+}
+.nineties .blink { animation: blink 1.2s steps(2, start) infinite; }
+
+/* blink (used by .error, .blink) — uses your existing @theme keyframes if defined */
+@keyframes blink { 50% { opacity: 0; } }

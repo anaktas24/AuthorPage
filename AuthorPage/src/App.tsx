@@ -1,13 +1,13 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import HomePage from './pages/homepage/homepage';
-import NinetiesLook from './pages/ninetieslook/ninetieslook';
+import HomePage from './pages/homepage';
+import NinetiesLook from './pages/ninetieslook';
 import Books from './pages/book/book';
 import BookDetail from './pages/book/bookdetail';
 import Posts from './pages/blog/posts';
 import PostDetail from './pages/blog/postdetail';
 import PostNew from './pages/blog/postnew';
-import Contact from './pages/contact/contact';
-import About from './pages/about/about';
+import Contact from './pages/contact';
+import About from './pages/about';
 import Layout from './assets/style/Layout';
 import AddBookForm from './pages/book/admin/addbookform';
 import EditBookForm from './pages/book/admin/editbookform';

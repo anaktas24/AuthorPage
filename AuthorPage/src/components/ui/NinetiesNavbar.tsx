@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import '../../pages/ninetieslook/ninetieslook.css'
+
 const navItems = [
   {name: 'Home', path: '/nineties-look', icon: 'https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExcjNkbWEweG5uNTAzZGptemhpczZ6NzR0bDh5aXo1b2x0M2Y1Zzh0MCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/cNy9tdF66YtgI/giphy.gif'},
   { name: 'Books', path: '/books', icon: 'https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExeTcyend3c3dvMDE2eW1hejN5aXU3ZnhhZWE4cTNoaXlxNXl5ajFtdSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/xT8qBt3pdiCZrk3erS/giphy.gif'},

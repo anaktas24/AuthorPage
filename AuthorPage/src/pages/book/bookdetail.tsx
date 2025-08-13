@@ -1,158 +1,199 @@
-// BookDetail.tsx (optional simplified version)
-import { useState, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
+// BookDetailAppleBento.tsx
+import { useState, useEffect } from "react";
+import { useParams, Link } from "react-router-dom";
+import { motion } from "framer-motion";
+import type { Variants } from "framer-motion";
 
-interface Character {
-  name: string;
-  image: string;
-  bio: string;
-}
+// Variant with custom delay support
+const fadeInUp: Variants = {
+  hidden: { opacity: 0, y: 40 },
+  visible: (custom: number = 0) => ({
+    opacity: 1,
+    y: 0,
+    transition: { delay: custom, duration: 0.6, ease: "easeOut" },
+  }),
+};
 
-interface Setting {
-  name: string;
-  description: string;
-}
-
-interface Worldbuilding {
-  magic: string;
-  history: string;
-  culture: string;
-}
-
-interface Book {
-  id: number;
-  title: string;
-  description: string;
-  cover_url: string;
-  progress: number;
-  characters: Character[];
-  settings: Setting[];
-  worldbuilding: Worldbuilding;
-}
-
-const BookDetail: React.FC = () => {
+const BookDetailAppleBento: React.FC = () => {
   const { id } = useParams<{ id: string }>();
-  const [book, setBook] = useState<Book | null>(null);
+  const [book, setBook] = useState<any>(null);
 
   useEffect(() => {
     fetch(`http://localhost:3000/api/books/${id}`)
       .then((res) => res.json())
       .then((data) => setBook(data))
-      .catch((err) => console.error('Error fetching book:', err));
+      .catch(console.error);
   }, [id]);
 
   if (!book) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-[#FDF6E3] text-teal-900">
-        Loading...
+      <div className="min-h-screen flex items-center justify-center text-gray-500">
+        Loading…
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-[#FDF6E3] pt-40 pb-12 px-4 sm:px-6 lg:px-8">
+  <div className="bg-white text-gray-900">
+    {/* Hero */}
+    <motion.section
+      className="grid grid-cols-12 gap-6 max-w-7xl mx-auto px-6 py-20"
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true }}
+    >
+      <motion.div
+        className="col-span-12 lg:col-span-7 flex flex-col justify-center"
+        variants={fadeInUp}
+        custom={0.1}
+      >
+        <h1 className="text-5xl font-bold mb-6">{book.title}</h1>
+        <p className="text-lg text-gray-600 max-w-xl">{book.description}</p>
+      </motion.div>
+      <motion.div
+        className="col-span-12 lg:col-span-5"
+        variants={fadeInUp}
+        custom={0.3}
+      >
+        {book.cover_url && (
+          <img
+            src={book.cover_url}
+            alt={book.title}
+            className="rounded-3xl w-full object-cover shadow-xl"
+          />
+        )}
+      </motion.div>
+    </motion.section>
 
-      <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-min">
-          <div className="lg:col-span-2 bg-white rounded-2xl shadow-lg p-6 flex flex-col sm:flex-row gap-6 transform hover:scale-[1.02] transition-transform duration-300">
-            <img
-              src={book.cover_url}
-              alt={book.title}
-              className="w-full sm:w-1/3 rounded-lg object-cover"
-            />
-            <div className="flex-1">
-              <h2 className="text-3xl font-bold text-teal-900 mb-3">{book.title}</h2>
-              <p className="text-gray-600 mb-4">{book.description}</p>
-              <div className="mb-4">
-                <span className="text-sm text-gray-600">Progress: {book.progress}%</span>
-                <div className="w-full bg-gray-200 rounded-full h-2.5 mt-1">
-                  <div
-                    className="bg-amber-400 h-2.5 rounded-full"
-                    style={{ width: `${book.progress}%` }}
-                  ></div>
-                </div>
-              </div>
-              <Link
-                to="/books"
-                className="inline-block bg-amber-400 text-teal-900 px-5 py-2 rounded-full font-semibold hover:bg-amber-500 transition-colors duration-200"
-              >
-                Back to Books
-              </Link>
-            </div>
-          </div>
-          <div className="bg-white rounded-2xl shadow-lg p-6 md:row-span-2 transform hover:scale-[1.02] transition-transform duration-300">
-            <h3 className="text-2xl font-bold text-teal-900 mb-4 text-center">World Map</h3>
-            <div className="relative">
-              <img
-                src="https://via.placeholder.com/800x400?text=World+Map"
-                alt="World Map"
-                className="w-full rounded-lg"
-              />
-              {book.settings.map((setting, index) => (
-                <div
-                  key={setting.name}
-                  className={`map-hotspot absolute w-6 h-6 bg-amber-400 rounded-full cursor-pointer ${
-                    index === 0 ? 'top-1/4 left-1/4' : 'top-3/4 right-1/4'
-                  }`}
-                  title={setting.name}
-                >
-                  <span className="absolute hidden hover:block bg-teal-900 text-amber-100 p-2 rounded text-sm -top-10 left-1/2 transform -translate-x-1/2 whitespace-nowrap">
-                    {setting.name}
-                  </span>
-                </div>
-              ))}
-            </div>
-          </div>
-          <div className="bg-white rounded-2xl shadow-lg p-6 col-span-1 lg:col-span-2 transform hover:scale-[1.02] transition-transform duration-300">
-          <h3 className="text-2xl font-bold text-teal-900 mb-4 text-center">Characters</h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-            {book.characters.map((character) => (
-              <div key={character.name} className="bg-[#FDF6E3] rounded-lg p-3 shadow-sm">
+    {/* Bento Grid */}
+    <section className="grid grid-cols-12 auto-rows-[250px] gap-6 max-w-7xl mx-auto px-6 pb-20">
+      {/* Characters — tall vertical */}
+      <motion.div
+        className="col-span-12 lg:col-span-3 lg:row-span-3 bg-gray-50 rounded-3xl p-8 overflow-auto"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        variants={fadeInUp}
+        custom={0.1}
+      >
+        <h2 className="text-2xl font-semibold mb-6">Characters</h2>
+        <div className="space-y-6">
+          {book.characters?.map((char: any, i: number) => (
+            <motion.div
+              key={char.name}
+              className="flex flex-col items-center text-center"
+              variants={fadeInUp}
+              custom={0.2 + i * 0.05}
+            >
+              {char.image && (
                 <img
-                  src={character.image}
-                  alt={character.name}
-                  className="w-full h-40 object-cover rounded-md mb-2"
+                  src={char.image}
+                  alt={char.name}
+                  className="w-24 h-24 object-cover rounded-full mb-3 shadow-md"
                 />
-                <h4 className="text-lg font-semibold text-teal-900">{character.name}</h4>
-                <p className="text-gray-600 text-sm">{character.bio}</p>
-              </div>
+              )}
+              <h3 className="font-semibold">{char.name}</h3>
+              {char.bio && (
+                <p className="text-gray-600 text-sm">{char.bio}</p>
+              )}
+            </motion.div>
+          ))}
+        </div>
+      </motion.div>
+
+      {/* Synopsis — wide horizontal */}
+      <motion.div
+        className="col-span-12 lg:col-span-9 lg:row-span-1 bg-gray-50 rounded-3xl p-10 flex flex-col justify-center"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        variants={fadeInUp}
+        custom={0.15}
+      >
+        <h2 className="text-3xl font-semibold mb-4">Synopsis</h2>
+        <p className="text-gray-700 leading-relaxed">{book.description}</p>
+      </motion.div>
+
+      {/* World — square */}
+      <motion.div
+        className="col-span-12 lg:col-span-6 lg:row-span-2 bg-gray-50 rounded-3xl p-10 flex flex-col justify-center"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        variants={fadeInUp}
+        custom={0.2}
+      >
+        <h2 className="text-3xl font-semibold mb-4">World</h2>
+        {book.worldbuilding ? (
+          <>
+            {book.worldbuilding.magic && (
+              <p><strong>Magic:</strong> {book.worldbuilding.magic}</p>
+            )}
+            {book.worldbuilding.history && (
+              <p><strong>History:</strong> {book.worldbuilding.history}</p>
+            )}
+            {book.worldbuilding.culture && (
+              <p><strong>Culture:</strong> {book.worldbuilding.culture}</p>
+            )}
+          </>
+        ) : (
+          <p className="text-gray-500">No world details available.</p>
+        )}
+      </motion.div>
+
+      {/* Extras — smaller */}
+      <motion.div
+        className="col-span-12 lg:col-span-3 lg:row-span-2 bg-gray-50 rounded-3xl p-8 overflow-auto"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        variants={fadeInUp}
+        custom={0.25}
+      >
+        <h2 className="text-2xl font-semibold mb-4">Extras</h2>
+        {book.extras && book.extras.length > 0 ? (
+          <div className="grid grid-cols-1 gap-4">
+            {book.extras.map((extra: any, i: number) => (
+              <motion.div
+                key={i}
+                className="rounded-xl overflow-hidden"
+                variants={fadeInUp}
+                custom={0.3 + i * 0.05}
+              >
+                {extra.type === "image" && (
+                  <img
+                    src={extra.url}
+                    alt={`Extra ${i}`}
+                    className="w-full h-40 object-cover"
+                  />
+                )}
+                {extra.type === "video" && (
+                  <video controls className="w-full h-40 object-cover">
+                    <source src={extra.url} type="video/mp4" />
+                  </video>
+                )}
+              </motion.div>
             ))}
           </div>
-        </div>
+        ) : (
+          <p className="text-gray-500">No extra media available.</p>
+        )}
+      </motion.div>
 
-          <div className="bg-white rounded-2xl shadow-lg p-6 transform hover:scale-[1.02] transition-transform duration-300">
-            <h3 className="text-2xl font-bold text-teal-900 mb-4 text-center">Settings</h3>
-            <div className="space-y-4">
-              {book.settings.map((setting) => (
-                <div key={setting.name}>
-                  <h4 className="text-lg font-semibold text-teal-900">{setting.name}</h4>
-                  <p className="text-gray-600 text-sm">{setting.description}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-          <div className="lg:col-span-2 bg-white rounded-2xl shadow-lg p-6 transform hover:scale-[1.02] transition-transform duration-300">
-            <h3 className="text-2xl font-bold text-teal-900 mb-4 text-center">Worldbuilding</h3>
-            <div className="space-y-4">
-              <div>
-                <h4 className="text-lg font-semibold text-teal-900">Magic System</h4>
-                <p className="text-gray-600 text-sm">{book.worldbuilding.magic}</p>
-              </div>
-              <div>
-                <h4 className="text-lg font-semibold text-teal-900">History</h4>
-                <p className="text-gray-600 text-sm">{book.worldbuilding.history}</p>
-              </div>
-              <div>
-                <h4 className="text-lg font-semibold text-teal-900">Culture</h4>
-                <p className="text-gray-600 text-sm">{book.worldbuilding.culture}</p>
-              </div>
-            </div>
-          </div>
+      
+    </section>
 
-        </div>
-      </div>
+    {/* Back */}
+    <div className="max-w-7xl mx-auto px-6 pb-10">
+      <Link
+        to="/books"
+        className="inline-block mt-4 text-blue-600 hover:underline"
+      >
+        ← Back to Books
+      </Link>
     </div>
-  );
+  </div>
+);
 };
 
-export default BookDetail;
+export default BookDetailAppleBento;
