@@ -1,70 +1,284 @@
 @import "tailwindcss";
 
-/* Global Styles */
+/* =========================================
+   1. SHARED TAILWIND CONFIG
+   ========================================= */
+@theme {
+  --color-background: var(--bg-background);
+  --color-card: var(--bg-card);
+  --color-primary: var(--text-primary);
+  --color-secondary: var(--text-secondary);
+  --color-accent: var(--accent-color);
 
+  --font-body: var(--font-body);
+  --font-header: var(--font-header);
+}
+
+/* =========================================
+   2. MODERN THEME (DEFAULT)
+   ========================================= */
 html {
-  scroll-behavior: smooth;
+  /* Modern Variables */
+  --bg-background: #f8fafc;
+  --bg-card: #ffffff;
+  --text-primary: #1e293b;
+  --text-secondary: #475569;
+  --accent-color: #030f29;
+
+  --font-body: system-ui, sans-serif;
+  --font-header: system-ui, sans-serif;
 }
 
-body {
-  margin: 0;
-  padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  background: linear-gradient(to bottom, #ffffff 0%, #fcfcfc 100%);
-  color: #1F2937; /* Neutral dark text */
-  line-height: 1.5;
-  min-height: 100vh;
-  position: relative;
-  overflow-x: hidden;
+@layer base {
+  /* Modern Body Background */
+  html:not([data-theme='90s']) body {
+    background-color: var(--bg-background);
+    background-image: linear-gradient(to bottom, #ffffff 0%, #f1f5f9 100%);
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    transition: all 0.3s ease;
+    min-height: 100vh;
+  }
 }
 
-/* Optional: Subtle fantasy overlay (comment out if unwanted) */
-/*
-body::before {
-  content: '';
-  position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: url('/img/faint-scroll-bg.png') no-repeat center center;
-  background-size: cover;
-  opacity: 0.04;
-  pointer-events: none;
-  z-index: -1;
-}
-*/
+@layer components {
+  /* Modern Button */
+  html:not([data-theme='90s']) .btn-primary {
+    @apply inline-flex items-center justify-center px-6 py-3 font-bold transition-all duration-300 cursor-pointer;
+    @apply bg-gray-900 text-white rounded-full shadow-lg hover:bg-accent hover:scale-105 hover:shadow-xl active:scale-95;
+  }
 
-/* Links */
-a {
-  color: inherit;
-  text-decoration: none;
-  transition: color 0.3s ease;
+  /* Modern Card */
+  html:not([data-theme='90s']) .bg-card {
+    border: 1px solid #e2e8f0;
+  }
 }
 
-a:hover,
-a:focus {
-  color: #840d0d;
-  text-decoration: underline;
+/* =========================================
+   3. 90s THEME (CHAOS MODE)
+   ========================================= */
+
+/* 90s Variables */
+html[data-theme='90s'] {
+  --bg-background: #000000;
+  --bg-card: rgba(192, 192, 192, 0.9); /* Windows 95 Grey */
+  --text-primary: #000080;   /* Navy Blue */
+  --text-secondary: #000000;
+  --accent-color: #ff00ff;   /* Hot Pink */
+
+  --font-body: "Comic Sans MS", "Chalkboard SE", sans-serif;
+  --font-header: "Impact", "Arial Black", sans-serif;
 }
 
-/* Basic container for layout */
-.container {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 1rem;
+@layer base {
+  /* 90s Body & Confetti Background */
+  html[data-theme='90s'] body {
+    background-color: #000000 !important;
+
+    /* CSS Starfield Generation */
+    background-image:
+        radial-gradient(2px 2px at 20px 30px, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 40px 70px, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 50px 160px, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 90px 40px, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 130px 80px, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 160px 120px, #ffffff, rgba(0,0,0,0));
+
+    background-repeat: repeat !important;
+    background-size: 200px 200px !important;
+    background-attachment: fixed !important;
+
+    /* Green Text by default (Hacker style) */
+    color: #00ff00;
+
+    /* Alien Cursor */
+    cursor: url("https://cur.cursors-4u.net/cursors/cur-2/cur116.cur"), auto !important;
+  }
+
+  /* 90s Global Reset: Kill all rounded corners */
+  html[data-theme='90s'] * {
+    border-radius: 0px !important;
+    box-shadow: none !important;
+  }
+
+  /* 90s Typography Overrides */
+  html[data-theme='90s'] h1,
+  html[data-theme='90s'] h2 {
+    font-family: "Comic Sans MS", "Chalkboard SE", sans-serif !important;
+    color: #ffff00 !important;
+    background-color: #0000ff;
+    display: inline-block;
+    padding: 5px 15px;
+    border: 4px outset #ffffff;
+    text-shadow: 2px 2px #ff0000;
+    letter-spacing: 2px;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  html[data-theme='90s'] p,
+  html[data-theme='90s'] li {
+    font-family: "Courier New", monospace !important;
+    font-weight: bold;
+    color: #00ff00; /* Matrix Green */
+    text-shadow: 1px 1px 0px #000;
+    /* Adding black box background for readability over confetti */
+    background-color: black;
+    display: inline-block;
+    padding: 2px 5px;
+  }
+
+  /* 90s Links (Rainbow hover) */
+  html[data-theme='90s'] a {
+    color: blue !important;
+    text-decoration: underline !important;
+    background: white; /* readability */
+  }
+  html[data-theme='90s'] a:hover {
+    color: red !important;
+    background-color: yellow;
+    cursor: help;
+  }
+
+  /* 90s Images */
+  html[data-theme='90s'] img {
+    border: 4px solid #ff00ff;
+    border-style: ridge;
+  }
+
+  /* 90s Inputs */
+  html[data-theme='90s'] input,
+  html[data-theme='90s'] textarea {
+    background: #000000 !important;
+    color: #00ff00 !important;
+    border: 3px inset #808080 !important;
+    font-family: monospace;
+  }
+
+  /* === LAYOUT SQUASHER (New) === */
+  /* This fixes the wide spaces by forcing 98% width in 90s mode */
+  html[data-theme='90s'] .container,
+  html[data-theme='90s'] .max-w-7xl,
+  html[data-theme='90s'] .max-w-4xl {
+    max-width: 98% !important;
+    margin-left: 1% !important;
+    margin-right: 1% !important;
+    width: 98% !important;
+  }
+
+  html[data-theme='90s'] section,
+  html[data-theme='90s'] div {
+    /* Tighten vertical spacing */
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
 }
 
-/* Fluid section spacing */
-.flow-section {
-  padding-top: 6rem;
-  padding-bottom: 6rem;
+@layer components {
+  /* 90s Button Style */
+  html[data-theme='90s'] .btn-primary {
+    @apply inline-flex items-center justify-center px-6 py-3 font-bold cursor-pointer;
+    @apply bg-gray-300 text-black font-mono shadow-none uppercase tracking-widest;
+
+    border-top: 3px solid #ffffff;
+    border-left: 3px solid #ffffff;
+    border-right: 3px solid #000000;
+    border-bottom: 3px solid #000000;
+  }
+
+  html[data-theme='90s'] .btn-primary:active {
+    border-top: 3px solid #000000;
+    border-left: 3px solid #000000;
+    border-right: 3px solid #ffffff;
+    border-bottom: 3px solid #ffffff;
+    @apply translate-y-1;
+  }
+
+  /* 90s Card Style */
+  html[data-theme='90s'] .bg-card {
+    background-color: #c0c0c0 !important;
+    border-width: 4px;
+    border-style: outset;
+    border-color: #ff00ff #00ffff #ffff00 #ff0000;
+    box-shadow: 10px 10px 0px #000000;
+    border-radius: 0px;
+    color: black !important;
+  }
+}
+/* =========================================
+   THE GAP KILLER (90s COMPACT MODE)
+   ========================================= */
+@layer utilities {
+  html[data-theme='90s'] .py-12,
+  html[data-theme='90s'] .py-16,
+  html[data-theme='90s'] .py-20,
+  html[data-theme='90s'] .py-24,
+  html[data-theme='90s'] .gap-8,
+  html[data-theme='90s'] .gap-10,
+  html[data-theme='90s'] .gap-12,
+  html[data-theme='90s'] .space-y-8,
+  html[data-theme='90s'] .space-y-12 {
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    margin-top: 5px !important;
+    margin-bottom: 5px !important;
+    gap: 5px !important;
+  }
+
+  /* Force sections to touch each other */
+  html[data-theme='90s'] section {
+    margin-bottom: 10px !important;
+    border-bottom: 4px solid black; /* Visual separator instead of whitespace */
+  }
+}
+/* =========================================
+   FIX: NAVBAR OVERLAP
+   ========================================= */
+
+/* In 90s mode, stop the navbar from floating (Fixed -> Static).
+   This naturally pushes the Hero down so they don't overlap. */
+html[data-theme='90s'] nav {
+  position: relative !important;
+  top: auto !important;
+  border-bottom: 4px solid black !important;
+  margin-bottom: 0px !important;
+  z-index: 50 !important;
 }
 
-/* Focus styles for accessibility */
-:focus {
-  outline: 2px solid #FBBF24;
+/* Ensure the layout squasher doesn't hide the top of the page */
+html[data-theme='90s'] body {
+  padding-top: 0px !important;
 }
+/* =========================================
+   FINAL TOUCH: WINDOWS 95 SCROLLBAR
+   ========================================= */
 
-/* Responsive images */
-img {
-  max-width: 100%;
-  height: auto;
+@layer utilities {
+  /* Width of the scrollbar */
+  html[data-theme='90s'] ::-webkit-scrollbar {
+    width: 20px;
+    height: 20px;
+  }
+
+  /* The Track (Background) */
+  html[data-theme='90s'] ::-webkit-scrollbar-track {
+    background: url("data:image/svg+xml,%3Csvg width='4' height='4' viewBox='0 0 4 4' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='2' height='2' fill='%23c0c0c0'/%3E%3Crect x='2' y='2' width='2' height='2' fill='%23c0c0c0'/%3E%3Crect width='2' height='2' x='2' fill='%23ffffff'/%3E%3Crect width='2' height='2' y='2' fill='%23ffffff'/%3E%3C/svg%3E");
+    background-color: #c0c0c0; /* Gray dither pattern */
+  }
+
+  /* The Thumb (The part you drag) */
+  html[data-theme='90s'] ::-webkit-scrollbar-thumb {
+    background-color: #c0c0c0;
+    /* The 3D Bevel Effect */
+    border-top: 2px solid #ffffff;
+    border-left: 2px solid #ffffff;
+    border-right: 2px solid #000000;
+    border-bottom: 2px solid #000000;
+    box-shadow: inset 1px 1px 0 #dfdfdf, inset -1px -1px 0 #808080;
+  }
+
+  /* The Corner (where horizontal/vertical meet) */
+  html[data-theme='90s'] ::-webkit-scrollbar-corner {
+    background-color: #c0c0c0;
+  }
 }
