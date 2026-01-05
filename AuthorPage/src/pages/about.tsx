@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+
 const About: React.FC = () => {
   return (
     <div className="w-full py-20 px-4 sm:px-6 lg:px-8">
@@ -80,6 +81,7 @@ const About: React.FC = () => {
         </div>
 
       </div>
+
     </div>
   );
 };
