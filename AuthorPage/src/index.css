@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-<<<<<<< HEAD
+
 /* =========================================
    1. SHARED TAILWIND CONFIG
    ========================================= */
@@ -255,7 +255,7 @@ html[data-theme='90s'] body {
    FINAL TOUCH: WINDOWS 95 SCROLLBAR
    ========================================= */
 
-<<<<<<< HEAD
+
 @layer utilities {
   /* Width of the scrollbar */
   html[data-theme='90s'] ::-webkit-scrollbar {
@@ -284,14 +284,7 @@ html[data-theme='90s'] body {
   html[data-theme='90s'] ::-webkit-scrollbar-corner {
     background-color: #c0c0c0;
   }
-=======
-/* ---------------------------------------------------------
-   3. Navbar
-   --------------------------------------------------------- */
-.nineties .nineties-navbar {
-  background: linear-gradient(180deg, #000022, #000033 60%, #000044);
-  border-bottom: 3px double var(--border);
->>>>>>> 1fbd22205101e41261e3b5e597528fa038b8fd40
+
 }
 .nineties .nineties-nav-link {
   padding: 6px 10px;

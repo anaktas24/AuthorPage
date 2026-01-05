@@ -1,13 +1,9 @@
 import { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-<<<<<<< HEAD
 
 // Page Imports
 import HomePage from './pages/homepage';
-=======
-import HomePage from './pages/homepage';
-import NinetiesLook from './pages/ninetieslook';
->>>>>>> 1fbd22205101e41261e3b5e597528fa038b8fd40
+
 import Books from './pages/book/book';
 import BookDetail from './pages/book/bookdetail';
 import Posts from './pages/blog/posts';
@@ -15,10 +11,8 @@ import PostDetail from './pages/blog/postdetail';
 import PostNew from './pages/blog/postnew';
 import Contact from './pages/contact';
 import About from './pages/about';
-<<<<<<< HEAD
-=======
-import Layout from './assets/style/Layout';
->>>>>>> 1fbd22205101e41261e3b5e597528fa038b8fd40
+
+
 import AddBookForm from './pages/book/admin/addbookform';
 import EditBookForm from './pages/book/admin/editbookform';
 
