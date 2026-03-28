@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const RetroCursor = () => {
   const [trail, setTrail] = useState<{ x: number; y: number; id: number }[]>([]);
