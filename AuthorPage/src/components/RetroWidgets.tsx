@@ -13,7 +13,7 @@ const RetroWidgets: React.FC = () => {
     // Matches route: post 'visitor_count/increment', to: 'visitor_counts#increment'
     fetch(`${API_URL}/visitor_count/increment`, { method: 'POST' })
       .then(res => res.json())
-      .then(data => setHits(data.count))
+      .then(data => setHits(data.count ?? 0))
       .catch(err => console.error("Counter Error:", err));
 
     // B. GUESTBOOK (GET index)
