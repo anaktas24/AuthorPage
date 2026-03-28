@@ -1,0 +1,3 @@
+[submodule "AuthorPage/backend"]
+	path = AuthorPage/backend
+	url = https://github.com/anaktas24/AuthorPageBackend.git
